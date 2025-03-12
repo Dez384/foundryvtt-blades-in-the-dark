@@ -206,7 +206,7 @@
   "BITD.RollPeril": "Pericolo",
   "BITD.RollThreatSuccess": "Eviti la minaccia.",
   "BITD.RollThreatPeril": "Soffri conseguenze ridotte o <strong>Spingiti al limite</strong> per evitare la minaccia.",
-  "BITD.RollThreatThreat": "Soffri le conseguenze. Se ti <strong>Spingiti al limite</strong>, riduci le consecuenze.",
+  "BITD.RollThreatThreat": "Soffri le conseguenze. Se ti <strong>Spingi al limite</strong>, riduci le consecuenze.",
 
   "BITD.PositionControlled": "Controllata",
   "BITD.PositionRisky": "Rischiosa",
@@ -249,7 +249,7 @@
 
   "BITD.Encumbered": "Gravato",
   "BITD.OverMax": "Oltre il massimo",
-  "BITD.Discreet": "Dsicreto",
+  "BITD.Discreet": "Discreto",
   "BITD.Conspicuous": "Cospicuo",
 
   "BITD.Drain": "Sfinimento",
@@ -297,7 +297,7 @@
   "BITD.AcquireAsset": "Acquisire una risorsa",
   "BITD.AcquireAssetExtra": "Puoi spendere Denaro per aumentare il risultato del tiro oltre al Successo Critico, al costo di 2 Denari per ogni ulteriore livello aggiunto al Rango",
   "BITD.CrewTier": "Rango della banda",
-  "BITD.ExtraThreats": "Minaccie extra",
+  "BITD.ExtraThreats": "Minacce extra",
   "BITD.Threats": "Minacce",
 
   "BITD.RollVice": "Indulgi nel tuo vizio.<br/>rimuovi <strong>{clear_stress} stress</strong>.",
