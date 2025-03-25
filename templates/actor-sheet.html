@@ -318,8 +318,8 @@
             {{#multiboxes system.experience}}
             <input type="radio" id="character-{{_id}}-experience-0" name="system.experience" value="0" dtype="Radio">
             {{#times_from 1 system.experience_max}}
-            <input type="radio" id="character-{{_id}}-experience-{{this}}" name="system.experience" value="{{this}}" dtype="Radio">
-            <label class="radio-toggle" for="character-{{_id}}-experience-{{this}}"></label>
+            	<input type="radio" id="character-{{../_id}}-experience-{{this}}" name="system.experience" value="{{this}}" dtype="Radio">
+            	<label class="radio-toggle" for="character-{{../_id}}-experience-{{this}}"></label>
             {{/times_from}}
             {{/multiboxes}}
           </div>
