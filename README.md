@@ -68,6 +68,7 @@ Clocks are now here!
 - German (Deutsch)
 - French (Français)
 - Portuguese (Português)
+- Brazilian Portuguese (Português do Brasil)
 - Italian (Italiano)
 
 ## Troubleshooting
