@@ -107,7 +107,7 @@
   "BITD.Edges": "Méritos",
   "BITD.Flaws": "Defeitos",
   "BITD.Scale": "Escala",
-  "BITD.Quality": "`Qualidade",
+  "BITD.Quality": "Qualidade",
   "BITD.AddAdditionalTypeOfGangText": "O seu bando pode gastar dois upgrades para acrescentar um tipo adicional a uma gangue ou especialista.<br>Um parceiro usa o seu valor de qualidade para realizar ações adequadas ao seu tipo — para todas as outras, a sua qualidade é zero. Um determinado parceiro pode possuir até dois tipos. Algumas habilidades especiais de bando dão a característica “Elite” para um tipo de parceiro, concedendo +1d em suas rolagens de qualidade para ações relacionadas ao seu tipo.",
   "BITD.ClassExpClue1": "Toda vez que você rolar uma ação Desesperada, marque xp no atributo da ação.",
   "BITD.ClassExpClue2": "Você expressou suas crenças, motivações, raízes ou histórico.",
@@ -174,7 +174,7 @@
   "BITD.FlawsUnreliable": "Instável",
   "BITD.FlawsUnreliableDescription": "O parceiro nem sempre está disponível devido a outras obrigações, consequência dos seus vícios ou outros motivos.",
   "BITD.FlawsWild": "Indomável",
-  "BITD.FlawsWildDescription": "O parceiro é beberrão, devasso e cruel.",
+  "BITD.FlawsWildDescription": "O parceiro é beberrão, devasso e tagarela.",
 
   "BITD.HarmNoHarm": "Sem Dano",
   "BITD.HarmNoHarmDescription": "O parceiro está saudável.",
@@ -201,7 +201,7 @@
   "BITD.RollPartialSuccessPosition": "Você consegue realizar a ação, mas sofre uma consequência: uma <strong>complicação grave</strong>, um <strong>dano grave</strong>, <strong>perde a oportunidade</strong> de agir.",
   "BITD.RollFailurePositionControlled": "Você fraqueja. Insista na mesma ação com uma oportunidade <strong>arriscada</strong> ou perca a oportunidade e tente outra abordagem.",
   "BITD.RollFailurePositionRisky": "As coisas dão errado. Você sofre uma <strong>complicação moderada</strong>, um <strong>dano moderado</strong>, termina em uma <strong>posição desesperada</strong>, <strong>perde a oportunidade</strong>.",
-  "BITD.RollFailurePositionDesperate": "O pior resultado possível. Você sofre uma <strong>complicação grave</strong>, um <strong>efeito reduzido</strong>, um <strong>dano grave</strong>.",
+  "BITD.RollFailurePositionDesperate": "O pior resultado possível. Você sofre uma <strong>complicação grave</strong>, um <strong>efeito reduzido</strong>, um <strong>dano grave</strong>, <strong>perde a oportunidade</strong> de agir.",
   "BITD.RollResistance": "Você <strong>reduz</strong> ou <strong>evita</strong> os efeitos da consequência (o Mestre decide).<br/>Sofra <strong>{stress} de estresse</strong>.",
   "BITD.RollResistanceCritical": "Você <strong>reduz</strong> ou <strong>evita</strong> os efeitos da consequência (o Mestre decide).<br/>Recupere <strong>1 estresse</strong>.",
   "BITD.RollPeril": "Perigo",
@@ -351,7 +351,7 @@
   "BITD.Settings": {
     "Action": {
       "Name": "Rolagens de Ação",
-      "Hint": "Habilita as Rolagens de Ação do Rolador de Dados dos Atores; desabilite abenas se você tiver Rolagens de Ameaça ativadas."
+      "Hint": "Habilita as Rolagens de Ação do Rolador de Dados dos Atores; desabilite apenas se você tiver Rolagens de Ameaça ativadas."
     },
     "Threat": {
       "Name": "Rolagens de Ameaça",
