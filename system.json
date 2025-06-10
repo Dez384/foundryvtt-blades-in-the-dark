@@ -1,5 +1,5 @@
 {
-  "id": "blades-in-the-dark",
+  "id": "blades-in-the-dark-ptbr",
   "title": "Blades in the Dark",
   "description": "Blades in the Dark game system.",
   "version": "6.0.1",
@@ -58,6 +58,11 @@
       "lang": "pt",
       "name": "Portuguese",
       "path": "lang/pt.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Portuguese (Brazil)",
+      "path": "lang/pt-BR.json"
     },
     {
       "lang": "it",
