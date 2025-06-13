@@ -345,6 +345,7 @@
     "num_available": 1
   },
   "class": {
+    "compendium_id": "",
     "templates": ["default", "logic", "activatedEffect"],
     "experience_clues": [],
     "base_skills": {
@@ -505,6 +506,7 @@
     "templates": ["ability", "activatedEffect"]
   },
   "crew_type": {
+    "compendium_id": "",
     "templates": ["activatedEffect"],
     "description": "",
     "experience_clues": "",

@@ -122,7 +122,7 @@ export class BladesSheet extends ActorSheet {
 	  let item_type;
 	  if (actor_type=="character") {item_type = "class";}
 		else if (actor_type=="crew") {item_type = "crew_type";}
-	  const playbook = this.actor.items.filter(i=> i.type === item_type)[0]?.name;
+	  const playbook = this.actor.items.filter(i=> i.type === item_type)[0]?.system.compendium_id;
 	  BladesHelpers.import_pb_contacts(this.actor, playbook);
 
     });

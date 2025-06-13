@@ -283,9 +283,9 @@ export class BladesHelpers {
     let all_acquaintances = await this.getSourcedItemsByType('npc');
 	let playbook_acquaintances = [];
 	if (actor_type == "character") {
-		playbook_acquaintances = all_acquaintances.filter(i => i.system.associated_class === selected_playbook);
+		playbook_acquaintances = all_acquaintances.filter(i => i.system.associated_class_id === selected_playbook);
 	} else if (actor_type == "crew") {
-		playbook_acquaintances = all_acquaintances.filter(i => i.system.associated_crew_type === selected_playbook);
+		playbook_acquaintances = all_acquaintances.filter(i => i.system.associated_crew_type_id === selected_playbook);
 	}
 	return playbook_acquaintances;
 
