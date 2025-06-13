@@ -246,8 +246,11 @@
       "description_short": "",
       "description": "",
       "associated_class": "",
+      "associated_class_id": "",
       "associated_faction": "",
+      "associated_faction_id": "",
       "associated_crew_type": "",
+      "associated_crew_type_id": "",
       "notes": ""
     }
   },
