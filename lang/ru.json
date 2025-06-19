@@ -230,10 +230,10 @@
   "BITD.SkillsWreck": "Разрушение",
   "BITD.SkillsResolve": "Воля",
   "BITD.SkillsResolveShort": "Воля",
-  "BITD.SkillsAttune": "Манипулирование",
+  "BITD.SkillsAttune": "Резонанс",
   "BITD.SkillsCommand": "Приказ",
   "BITD.SkillsConsort": "Общение",
-  "BITD.SkillsSway": "Резонанс",
+  "BITD.SkillsSway": "Манипулирование",
 
   "BITD.AddAbility": "Добавить способность",
   "BITD.AddItem": "Добавить элемент",
