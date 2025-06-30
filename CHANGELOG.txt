@@ -1,3 +1,11 @@
+v.6.0.2
+- Added Brazilian Portuguese translation (#38, @LucasPicoli)
+- Updated Italian translation (#32, @Arcadio21)
+- Fixed Experience Tracker issue potentially updating wrong sheets (#34, @AdamGorbert)
+- Adjusted list of Actors so that clocks appear first when making a new actor (#33)
+- Added a setting to allow newly made actor clocks to have permissions set to "Observer" (#33)
+- Fixed error where cohort item sheets couldn't be opened (#31) and allowed cohort names to display on crew sheet
+
 v.6.0.1
 - Fixed bug that prevented character sheets from functioning correctly if the BitD Alternate Sheets module was not installed
 - Added backwards compatibility for v11 Foundry
