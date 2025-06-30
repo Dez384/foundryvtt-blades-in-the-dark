@@ -368,6 +368,10 @@
     "Edge": {
       "Name": "Edge",
       "Hint": "Adds Edge to character sheets from the Deep Cuts supplement."
+    },
+    "PublicClocks": {
+      "Name": "Default Observable Clocks",
+      "Hint": "All newly made Clock actors will have permissions set to Observer for all players."
     }
   },
   "BITD.log": {

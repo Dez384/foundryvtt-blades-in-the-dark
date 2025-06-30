@@ -67,10 +67,20 @@ export const registerSystemSettings = function() {
 	type: new foundry.data.fields.BooleanField(),
 	requiresReload: true
   });
+  
+  	game.settings.register('blades-in-the-dark', 'PublicClocks', {
+	name: game.i18n.localize('BITD.Settings.PublicClocks.Name'),
+	hint: game.i18n.localize('BITD.Settings.PublicClocks.Hint'),
+	config: true,
+	scope: 'world',
+	type: new foundry.data.fields.BooleanField(),
+	requiresReload: true
+  });
+  
   } //end if for game.version >12
   else {
 	  
-  const set_array = [['ActionRoll','Action'],['ThreatRoll','Threat'],['PushYourself','Push'],['DeepCutLoad','Load'],['ClockXP','ClockXP'],['Edge','Edge']];
+  const set_array = [['ActionRoll','Action'],['ThreatRoll','Threat'],['PushYourself','Push'],['DeepCutLoad','Load'],['ClockXP','ClockXP'],['Edge','Edge'],['PublicClocks','PublicClocks']];
  
   for (let i=0; i<set_array.length; i++) {
 	  

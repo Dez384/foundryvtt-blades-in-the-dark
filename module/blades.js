@@ -59,6 +59,17 @@ Hooks.once("init", async function() {
   Actors.registeredSheets.forEach(element => console.log(element.Actor.name));
 
 
+  if (game.settings.get('blades-in-the-dark', "PublicClocks")) {
+	Hooks.on("preCreateActor", (actor, createData, options, userId) => {
+		if (actor.type === "\uD83D\uDD5B clock") {
+			actor.updateSource({
+				'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER
+			});
+		}
+	});
+  }
+
+
   // Is the value Turf side.
   Handlebars.registerHelper('is_turf_side', function(value, options) {
     if (["left", "right", "top", "bottom"].includes(value)) {

@@ -1,6 +1,6 @@
 {
   "Actor": {
-  "types": ["character", "npc", "crew", "\uD83D\uDD5B clock", "factions"],
+  "types": ["\uD83D\uDD5B clock", "character", "npc", "crew",  "factions"],
   "character": {
     "alias": "",
     "look": "",

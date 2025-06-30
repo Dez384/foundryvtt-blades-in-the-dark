@@ -372,6 +372,10 @@
     "Edge": {
       "Name": "Vantagem",
       "Hint": "Adiciona às cartilhas de personagem o módulo de Vantagem do suplemento Deep Cuts."
+    },
+    "PublicClocks": {
+      "Name": "Default Observable Clocks",
+      "Hint": "All newly made Clock actors will have permissions set to Observer for all players."
     }
   },
   "BITD.log": {
