@@ -36,7 +36,6 @@ export class BladesSheet extends ActorSheet {
 		});		
 	}
 
-
     // Post item to chat
     html.find(".item-post").click((ev) => {
       const element = $(ev.currentTarget).parents(".item");
@@ -53,6 +52,12 @@ export class BladesSheet extends ActorSheet {
 	
     // Update Inventory Item
     html.find('.item-body').click(ev => {
+      const element = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(element.data("itemId"));
+      item.sheet.render(true);
+    });
+    // Update Inventory Item
+    html.find('.item-sheet-open').click(ev => {
       const element = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(element.data("itemId"));
       item.sheet.render(true);

@@ -3,6 +3,7 @@
   <div class="cohort-block">
     <div class="label-stripe">
       <div class="item-sheet-open">
+		{{name}}, 
         {{#if (eq system.cohort "Gang")}}
           Gang of {{#each system.gang_type as |gang_type key|}}{{gang_type}} {{/each}}
         {{else if (eq system.cohort "Expert")}}
