@@ -1,0 +1,41 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": ["error", "tab", {
+      "SwitchCase": 1,
+      "VariableDeclarator": 1,
+      "outerIIFEBody": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": { "parameters": 1, "body": 1 },
+      "FunctionExpression": { "parameters": 1, "body": 1 },
+      "CallExpression": { "arguments": 1 },
+      "ArrayExpression": 1,
+      "ObjectExpression": 1,
+      "ImportDeclaration": 1,
+      "flatTernaryExpressions": false,
+      "ignoreComments": false
+    }],
+    "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+    "no-tabs": "off"
+  },
+  "globals": {
+    "game": "readonly",
+    "foundry": "readonly",
+    "CONFIG": "readonly",
+    "Actor": "readonly",
+    "Item": "readonly",
+    "Dialog": "readonly",
+    "Roll": "readonly",
+    "Hooks": "readonly",
+    "ui": "readonly",
+    "TextEditor": "readonly"
+  }
+}

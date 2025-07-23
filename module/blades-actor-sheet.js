@@ -166,7 +166,6 @@ export class BladesActorSheet extends BladesSheet {
         });
 
         // Add custom contact
-        // Add custom contact
         html.find('.add-custom-contact').click(() => {
             BladesHelpers.addCustomContact(this.actor);
         });
