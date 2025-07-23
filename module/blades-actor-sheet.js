@@ -166,56 +166,9 @@ export class BladesActorSheet extends BladesSheet {
         });
 
         // Add custom contact
-        html.find('.add-custom-contact').click(async () => {
-            const dialogContent = `
-              <form>
-                <div class="form-group">
-                  <label>Name:</label>
-                  <input type="text" name="name" required/>
-                </div>
-                <div class="form-group">
-                  <label>Description:</label>
-                  <input type="text" name="description_short"/>
-                </div>
-                <div class="form-group">
-                  <label>Standing:</label>
-                  <select name="standing">
-                    <option value="neutral">Neutral</option>
-                    <option value="friend">Friend</option>
-                    <option value="rival">Rival</option>
-                  </select>
-                </div>
-              </form>
-            `;
-
-            const dialog = new Dialog({
-                title: "Add Custom Contact",
-                content: dialogContent,
-                buttons: {
-                    submit: {
-                        label: "Add Contact",
-                        callback: async (html) => {
-                            const form = html.find('form')[0];
-                            const newContact = {
-                                id: foundry.utils.randomID(),
-                                name: form.name.value,
-                                description_short: form.description_short.value,
-                                standing: form.standing.value
-                            };
-
-                            const acquaintances = this.actor.system.acquaintances || [];
-                            acquaintances.push(newContact);
-                            await this.actor.update({"system.acquaintances": acquaintances});
-                        }
-                    },
-                    cancel: {
-                        label: "Cancel"
-                    }
-                },
-                default: "submit"
-            });
-
-            dialog.render(true);
+        // Add custom contact
+        html.find('.add-custom-contact').click(() => {
+            BladesHelpers.addCustomContact(this.actor);
         });
 
     }

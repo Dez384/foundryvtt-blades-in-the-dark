@@ -333,7 +333,10 @@
 	<div id="crew-{{_id}}-contacts" class="tab flex-vertical" data-tab="contacts">
 		<div class="label-stripe flex-horizontal">
 			<p>{{localize "BITD.Contacts"}}</p>
-			<p><a class="import-contacts" data-tooltip="{{localize 'BITD.ImportPlaybookContacts'}}"><i class="fa-solid fa-file-import"></i></a></p>
+			<p>
+                <a class="import-contacts" data-tooltip="{{localize 'BITD.ImportPlaybookContacts'}}"><i class="fa-solid fa-file-import"></i></a>
+                <a class="add-custom-contact" data-tooltip="Add Custom Contact"><i class="fas fa-user-plus"></i></a>
+            </p>
 		</div>
             {{#if system.acquaintances}}
 			{{#each system.acquaintances as |item id|}}
