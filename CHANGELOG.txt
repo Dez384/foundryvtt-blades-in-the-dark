@@ -1,3 +1,6 @@
+v.6.0.3
+- Added a button to add new contacts directly to character/crew sheets *#47, @CalibanAngel)
+
 v.6.0.2
 - Added Brazilian Portuguese translation (#38, @LucasPicoli)
 - Updated Italian translation (#32, @Arcadio21)
