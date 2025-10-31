@@ -66,10 +66,16 @@ export class BladesActor extends Actor {
 
   /* -------------------------------------------- */
 
-  rollAttributePopup(attribute_name) {
+  rollAttributePopup(attribute_name, defaultDice = 0) {
 
     // const roll = new Roll("1d20 + @abilities.wis.mod", actor.getRollData());
     let attribute_label = BladesHelpers.getRollLabel(attribute_name);
+
+    const sanitizedDefaultDice = (() => {
+      const numeric = Number(defaultDice);
+      if (Number.isNaN(numeric)) return 0;
+      return Math.max(0, Math.min(Math.floor(numeric), 10));
+    })();
 
     // get crew tier info from character sheet if available
     let current_tier = 0;
@@ -160,7 +166,10 @@ export class BladesActor extends Actor {
             <span style="width:200px">
               <label>${game.i18n.localize("BITD.RollNumberOfDice")}:</label>
               <select id="qty" name="qty">
-                ${Array(11).fill().map((item, i) => `<option value="${i}">${i}d</option>`).join('')}
+                ${Array.from({ length: 11 }, (_, i) => {
+                  const selected = i === sanitizedDefaultDice ? " selected" : "";
+                  return `<option value="${i}"${selected}>${i}d</option>`;
+                }).join("")}
               </select>
             </span>
           </div>
