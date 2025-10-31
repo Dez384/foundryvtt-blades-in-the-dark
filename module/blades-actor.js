@@ -66,6 +66,15 @@ export class BladesActor extends Actor {
 
   /* -------------------------------------------- */
 
+  _getCrewActor() {
+    const crewInfo = this.system?.crew?.[0];
+    if (!crewInfo?.id) return null;
+    const crewActor = game.actors.get(crewInfo.id);
+    return crewActor ?? null;
+  }
+
+  /* -------------------------------------------- */
+
   rollAttributePopup(attribute_name) {
 
     // const roll = new Roll("1d20 + @abilities.wis.mod", actor.getRollData());
@@ -74,12 +83,9 @@ export class BladesActor extends Actor {
     // get crew tier info from character sheet if available
     let current_tier = 0;
     try {
-      const crewInfo = this.system?.crew?.[0];
-      if (crewInfo?.id) {
-        const crewActor = game.actors.get(crewInfo.id);
-        const parsedTier = Number(crewActor?.system?.tier);
-        current_tier = Number.isFinite(parsedTier) ? parsedTier : 0;
-      }
+      const crewActor = this._getCrewActor();
+      const parsedTier = Number(crewActor?.system?.tier);
+      current_tier = Number.isFinite(parsedTier) ? parsedTier : 0;
     } catch (error) {
       console.warn("No Crew is attached to the Actor.");
       console.error(error);
@@ -374,32 +380,34 @@ export class BladesActor extends Actor {
 
   getMaxStress() {
     let max_stress = this.system.stress.max;
-    let crew = this.system.crew;
-    if (crew.length > 0) {
-      let crew_actor = game.actors.get(crew[0].id);
-      max_stress = max_stress + crew_actor.system.scoundrel.add_stress;
+    const crew_actor = this._getCrewActor();
+    if (crew_actor) {
+      const bonus = Number(crew_actor?.system?.scoundrel?.add_stress);
+      if (Number.isFinite(bonus)) {
+        max_stress += bonus;
+      }
     }
     return max_stress;
   }
 
   getMaxTrauma() {
     let max_trauma = this.system.trauma.max;
-    let crew = this.system.crew;
-    if (crew.length > 0) {
-      let crew_actor = game.actors.get(crew[0].id);
-      max_trauma = max_trauma + crew_actor.system.scoundrel.add_trauma;
+    const crew_actor = this._getCrewActor();
+    if (crew_actor) {
+      const bonus = Number(crew_actor?.system?.scoundrel?.add_trauma);
+      if (Number.isFinite(bonus)) {
+        max_trauma += bonus;
+      }
     }
     return max_trauma;
   }
 
   getHasMastery(){
-    let has_mastery = false;
-    let crew = this.system.crew;
-    if (crew.length > 0) {
-      let crew_actor = game.actors.get(crew[0].id);
-      has_mastery = crew_actor.system.scoundrel.mastery;
+    const crew_actor = this._getCrewActor();
+    if (!crew_actor) {
+      return false;
     }
-    return has_mastery
+    return Boolean(crew_actor?.system?.scoundrel?.mastery);
   }
   
   getHealingMin(){
