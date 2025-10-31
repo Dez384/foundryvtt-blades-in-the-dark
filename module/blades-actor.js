@@ -74,10 +74,13 @@ export class BladesActor extends Actor {
     // get crew tier info from character sheet if available
     let current_tier = 0;
     try {
-      let current_crew = game.actors.get(this.system.crew[0].id);
-      current_tier = parseInt(current_crew.system.tier);
-    }
-    catch (error) {
+      const crewInfo = this.system?.crew?.[0];
+      if (crewInfo?.id) {
+        const crewActor = game.actors.get(crewInfo.id);
+        const parsedTier = Number(crewActor?.system?.tier);
+        current_tier = Number.isFinite(parsedTier) ? parsedTier : 0;
+      }
+    } catch (error) {
       console.warn("No Crew is attached to the Actor.");
       console.error(error);
     }
