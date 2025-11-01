@@ -1,3 +1,5 @@
+import { renderHandlebarsTemplate as renderTemplate } from "./compat.js";
+
 /**
  * Roll Dice.
  * @param {int} dice_amount

@@ -1,6 +1,7 @@
 import {BladesSheet} from "./blades-sheet.js";
 import {BladesActiveEffect} from "./blades-active-effect.js";
 import {BladesHelpers} from "./blades-helpers.js";
+import { enrichHTML } from "./compat.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -90,7 +91,7 @@ export class BladesActorSheet extends BladesSheet {
             };
         }
 
-        sheetData.system.description = await TextEditor.enrichHTML(sheetData.system.description, {
+        sheetData.system.description = await enrichHTML(sheetData.system.description, {
             secrets: sheetData.owner,
             async: true
         });
