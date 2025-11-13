@@ -1,12 +1,15 @@
 import { BladesActiveEffect } from "./blades-active-effect.js";
 import { BladesHelpers } from "./blades-helpers.js";
+import { getActorSheetClass } from "./compat.js";
+
+const BaseActorSheet = getActorSheetClass();
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
 
-export class BladesSheet extends ActorSheet {
+export class BladesSheet extends BaseActorSheet {
 
   /* -------------------------------------------- */
 

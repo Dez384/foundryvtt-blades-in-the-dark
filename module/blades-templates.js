@@ -3,6 +3,8 @@
  * Pre-loaded templates are compiled and cached for fast access when rendering
  * @return {Promise}
  */
+import { loadHandlebarsTemplates } from "./compat.js";
+
 export const preloadHandlebarsTemplates = async function() {
 
   // Define template paths to load
@@ -18,5 +20,5 @@ export const preloadHandlebarsTemplates = async function() {
   ];
 
   // Load the template parts
-  return loadTemplates(templatePaths);
+  return loadHandlebarsTemplates(templatePaths);
 };

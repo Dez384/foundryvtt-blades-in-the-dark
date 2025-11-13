@@ -1,3 +1,5 @@
+import { generateRandomId } from "./compat.js";
+
 export class BladesHelpers {
 
   /**
@@ -47,7 +49,7 @@ export class BladesHelpers {
     const item_type = a.dataset.itemType;
 
     let data = {
-      name: randomID(),
+      name: generateRandomId(),
       type: item_type
     };
     return actor.createEmbeddedDocuments("Item", [data]);
@@ -310,7 +312,7 @@ export class BladesHelpers {
             callback: async (html) => {
               const form = html.find('form')[0];
               const newContact = {
-                id: foundry.utils.randomID(),
+                id: generateRandomId(),
                 name: form.name.value,
                 description_short: form.description_short.value,
                 standing: form.standing.value

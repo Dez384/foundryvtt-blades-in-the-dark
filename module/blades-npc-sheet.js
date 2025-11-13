@@ -1,5 +1,6 @@
 
 import { BladesSheet } from "./blades-sheet.js";
+import { enrichHTML } from "./compat.js";
 
 /**
  * @extends {BladesSheet}
@@ -28,7 +29,7 @@ export class BladesNPCSheet extends BladesSheet {
     sheetData.owner = superData.owner;
     sheetData.editable = superData.editable;
 
-    sheetData.system.description = await TextEditor.enrichHTML(sheetData.system.description, {secrets: sheetData.owner, async: true});
+    sheetData.system.description = await enrichHTML(sheetData.system.description, {secrets: sheetData.owner, async: true});
 
     return sheetData;
   }

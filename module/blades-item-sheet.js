@@ -4,8 +4,11 @@
  */
 import {onManageActiveEffect, prepareActiveEffectCategories} from "./effects.js";
 import { BladesActiveEffect } from "./blades-active-effect.js";
+import { getItemSheetClass, enrichHTML } from "./compat.js";
 
-export class BladesItemSheet extends ItemSheet {
+const BaseItemSheet = getItemSheetClass();
+
+export class BladesItemSheet extends BaseItemSheet {
 
   /** @override */
 	static get defaultOptions() {
@@ -62,7 +65,7 @@ export class BladesItemSheet extends ItemSheet {
     // Prepare Active Effects
     sheetData.effects = prepareActiveEffectCategories(this.document.effects);
 
-    sheetData.system.description = await TextEditor.enrichHTML(sheetData.system.description, {secrets: sheetData.owner, async: true});
+    sheetData.system.description = await enrichHTML(sheetData.system.description, {secrets: sheetData.owner, async: true});
 
     return sheetData;
   }
