@@ -6,28 +6,28 @@
  * Foundry VTT V15+).
  */
 export function getActorSheetClass() {
-  return foundry?.appv1?.sheets?.ActorSheet ?? globalThis.ActorSheet;
+  return foundry?.appv1?.sheets?.ActorSheet ?? ActorSheet;
 }
 
 export function getItemSheetClass() {
-  return foundry?.appv1?.sheets?.ItemSheet ?? globalThis.ItemSheet;
+  return foundry?.appv1?.sheets?.ItemSheet ?? ItemSheet;
 }
 
 let cachedSheetConfig;
 
 function getSheetConfig() {
   if (cachedSheetConfig) return cachedSheetConfig;
-  const apiConfig = foundry?.applications?.api?.DocumentSheetConfig ?? foundry?.applications?.config?.DocumentSheetConfig;
+  const apiConfig = foundry?.applications?.apps?.DocumentSheetConfig ?? foundry?.applications?.config?.DocumentSheetConfig;
   cachedSheetConfig = apiConfig ?? null;
   return cachedSheetConfig;
 }
 
 function getActorsCollectionLegacy() {
-  return foundry?.documents?.collections?.Actors ?? game?.actors ?? globalThis.Actors;
+  return foundry?.documents?.collections?.Actors ?? Actors;
 }
 
 function getItemsCollectionLegacy() {
-  return foundry?.documents?.collections?.Items ?? game?.items ?? globalThis.Items;
+  return foundry?.documents?.collections?.Items ?? Items;
 }
 
 export function unregisterActorSheet(namespace, sheetClass) {
@@ -63,7 +63,7 @@ export function registerItemSheet(namespace, sheetClass, options) {
 }
 
 export function loadHandlebarsTemplates(paths) {
-  const loader = foundry?.applications?.handlebars?.loadTemplates ?? globalThis.loadTemplates;
+  const loader = foundry?.applications?.handlebars?.loadTemplates ?? loadTemplates;
   if (!loader) {
     throw new Error("Unable to resolve a Handlebars template loader");
   }
@@ -71,7 +71,7 @@ export function loadHandlebarsTemplates(paths) {
 }
 
 export function renderHandlebarsTemplate(...args) {
-  const renderer = foundry?.applications?.handlebars?.renderTemplate ?? globalThis.renderTemplate;
+  const renderer = foundry?.applications?.handlebars?.renderTemplate ?? renderTemplate;
   if (!renderer) {
     throw new Error("Unable to resolve a Handlebars template renderer");
   }
@@ -79,7 +79,7 @@ export function renderHandlebarsTemplate(...args) {
 }
 
 export function enrichHTML(...args) {
-  const textEditor = foundry?.applications?.ux?.TextEditor?.implementation ?? globalThis.TextEditor;
+  const textEditor = foundry?.applications?.ux?.TextEditor?.implementation ?? TextEditor;
   const enrich = textEditor?.enrichHTML;
   if (!enrich) {
     throw new Error("Unable to resolve TextEditor.enrichHTML");
@@ -88,7 +88,7 @@ export function enrichHTML(...args) {
 }
 
 export function generateRandomId() {
-  const randomIdFn = foundry?.utils?.randomID ?? globalThis.randomID;
+  const randomIdFn = foundry?.utils?.randomID ?? randomID;
   if (!randomIdFn) {
     throw new Error("Unable to resolve a randomID generator");
   }
