@@ -1,4 +1,5 @@
 import { generateRandomId } from "./compat.js";
+import { openFormDialog } from "./lib/dialog-compat.js";
 
 export class BladesHelpers {
 
@@ -285,11 +286,11 @@ export class BladesHelpers {
     <form>
       <div class="form-group">
         <label>Name:</label>
-        <input type="text" name="name" required/>
+        <input type="text" name="name" required />
       </div>
       <div class="form-group">
         <label>Description:</label>
-        <input type="text" name="description_short"/>
+        <input type="text" name="description_short" />
       </div>
       <div class="form-group">
         <label>Standing:</label>
@@ -302,36 +303,35 @@ export class BladesHelpers {
     </form>
   `;
 
-    return new Promise((resolve) => {
-      new Dialog({
-        title: "Add Custom Contact",
-        content: dialogContent,
-        buttons: {
-          submit: {
-            label: "Add Contact",
-            callback: async (html) => {
-              const form = html.find('form')[0];
-              const newContact = {
-                id: generateRandomId(),
-                name: form.name.value,
-                description_short: form.description_short.value,
-                standing: form.standing.value
-              };
-
-              const acquaintances = actor.system.acquaintances || [];
-              acquaintances.push(newContact);
-              await actor.update({"system.acquaintances": acquaintances});
-              resolve(true);
-            }
-          },
-          cancel: {
-            label: "Cancel",
-            callback: () => resolve(false)
-          }
-        },
-        default: "submit"
-      }).render(true);
+    const result = await openFormDialog({
+      title: "Add Custom Contact",
+      content: dialogContent,
+      okLabel: "Add Contact",
+      cancelLabel: "Cancel",
+      defaultButton: "ok",
     });
+
+    if (!result) {
+      return false;
+    }
+
+    const name = String(result.name ?? "").trim();
+    if (!name) {
+      ui.notifications?.warn?.("Name is required for a custom contact.");
+      return false;
+    }
+
+    const newContact = {
+      id: generateRandomId(),
+      name,
+      description_short: String(result.description_short ?? ""),
+      standing: result.standing ?? "neutral",
+    };
+
+    const acquaintances = actor.system.acquaintances || [];
+    acquaintances.push(newContact);
+    await actor.update({ "system.acquaintances": acquaintances });
+    return true;
   }
 
   static async getSourcedItemsByType(item_type) {
