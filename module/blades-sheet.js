@@ -1,6 +1,7 @@
 import { BladesActiveEffect } from "./blades-active-effect.js";
 import { BladesHelpers } from "./blades-helpers.js";
 import { getActorSheetClass } from "./compat.js";
+import { openFormDialog } from "./lib/dialog-compat.js";
 
 const BaseActorSheet = getActorSheetClass();
 
@@ -205,9 +206,7 @@ export class BladesSheet extends BaseActorSheet {
 
     let items = await BladesHelpers.getAllItemsByType(item_type, game);
 
-    let html = `<div class="items-to-add">`;
-
-    items.forEach(e => {
+    const optionRows = items.map((e) => {
       let addition_price_load = ``;
 
       if (typeof e.system.load !== "undefined") {
@@ -216,48 +215,56 @@ export class BladesSheet extends BaseActorSheet {
         addition_price_load += `(${e.system.price})`
       }
 
-      html += `<input id="select-item-${e._id}" type="${input_type}" name="select_items" value="${e._id}">`;
-      html += `<label class="flex-horizontal" for="select-item-${e._id}">`;
-      html += `${game.i18n.localize(e.name)} ${addition_price_load} <i class="fas fa-question-circle" data-tooltip="${game.i18n.localize(e.system.description)}"></i>`;
-      html += `</label>`;
+      return `
+        <div class="item-choice">
+          <input id="select-item-${e._id}" type="${input_type}" name="select_items" value="${e._id}">
+          <label class="flex-horizontal" for="select-item-${e._id}">
+            ${game.i18n.localize(e.name)} ${addition_price_load}
+            <i class="fas fa-question-circle" data-tooltip="${game.i18n.localize(e.system.description)}"></i>
+          </label>
+        </div>`;
+    }).join("");
+
+    const content = `
+      <form class="items-to-add">
+        ${optionRows}
+      </form>
+    `;
+
+    const formResult = await openFormDialog({
+      title: `${game.i18n.localize('Add')} ${item_type}`,
+      content,
+      okLabel: game.i18n.localize('Add'),
+      cancelLabel: game.i18n.localize('Cancel'),
+      dialog: {
+        // width: "500"
+      }
     });
 
-    html += `</div>`;
-
-    let options = {
-      // width: "500"
+    if (!formResult || !formResult.select_items) {
+      return;
     }
 
-    let dialog = new Dialog({
-      title: `${game.i18n.localize('Add')} ${item_type}`,
-      content: html,
-      buttons: {
-        one: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('Add'),
-          callback: async (html) => await this.addItemsToSheet(item_type, $(html).find('.items-to-add'))
-        },
-        two: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('Cancel'),
-          callback: () => false
-        }
-      },
-      default: "two"
-    }, options);
-
-    dialog.render(true);
+    await this.addItemsToSheet(item_type, formResult.select_items);
   }
 
   /* -------------------------------------------- */
 
-  async addItemsToSheet(item_type, el) {
+  async addItemsToSheet(item_type, selections) {
 
     let items = await BladesHelpers.getAllItemsByType(item_type, game);
-    let items_to_add = [];
-    el.find("input:checked").each(function() {
-      items_to_add.push(items.find(e => e._id === $(this).val()));
-    });
+    let selectedIds = selections;
+    if (!Array.isArray(selectedIds)) {
+      selectedIds = selectedIds ? [selectedIds] : [];
+    }
+
+    const items_to_add = selectedIds
+      .map((selectedId) => items.find((e) => e._id === selectedId))
+      .filter((item) => Boolean(item));
+
+    if (items_to_add.length === 0) {
+      return;
+    }
 
     if (item_type == "crew") {
 		let actor = this.actor;
