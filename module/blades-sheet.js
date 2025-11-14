@@ -1,12 +1,15 @@
 import { BladesActiveEffect } from "./blades-active-effect.js";
 import { BladesHelpers } from "./blades-helpers.js";
+import { getActorSheetClass } from "./compat.js";
+
+const BaseActorSheet = getActorSheetClass();
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
 
-export class BladesSheet extends ActorSheet {
+export class BladesSheet extends BaseActorSheet {
 
   /* -------------------------------------------- */
 
@@ -48,7 +51,21 @@ export class BladesSheet extends ActorSheet {
       html.on("change", "textarea", this._onChangeInput.bind(this));  // Use delegated listener on the form
     }
 
-    html.find(".roll-die-attribute").click(this._onRollAttributeDieClick.bind(this));
+    html.find(".roll-die-attribute").click((event) => {
+      const attributeName = event.currentTarget?.dataset?.rollAttribute;
+      let defaultDice = 0;
+      try {
+        const rollData = this.actor.getRollData?.();
+        defaultDice = Number(rollData?.dice_amount?.[attributeName] ?? 0);
+      } catch (err) {
+        console.warn("Failed to determine dice amount for roll.", err);
+        defaultDice = 0;
+      }
+
+      const sanitizedDice = Number.isNaN(defaultDice) ? 0 : defaultDice;
+
+      this.actor.rollAttributePopup(attributeName, sanitizedDice);
+    });
 	
     // Update Inventory Item
     html.find('.item-body').click(ev => {

@@ -66,18 +66,33 @@ export class BladesActor extends Actor {
 
   /* -------------------------------------------- */
 
-  rollAttributePopup(attribute_name) {
+  _getCrewActor() {
+    const crewInfo = this.system?.crew?.[0];
+    if (!crewInfo?.id) return null;
+    const crewActor = game.actors.get(crewInfo.id);
+    return crewActor ?? null;
+  }
+
+  /* -------------------------------------------- */
+
+  rollAttributePopup(attribute_name, defaultDice = 0) {
 
     // const roll = new Roll("1d20 + @abilities.wis.mod", actor.getRollData());
     let attribute_label = BladesHelpers.getRollLabel(attribute_name);
 
+    const sanitizedDefaultDice = (() => {
+      const numeric = Number(defaultDice);
+      if (Number.isNaN(numeric)) return 0;
+      return Math.max(0, Math.min(Math.floor(numeric), 10));
+    })();
+
     // get crew tier info from character sheet if available
     let current_tier = 0;
     try {
-      let current_crew = game.actors.get(this.system.crew[0].id);
-      current_tier = parseInt(current_crew.system.tier);
-    }
-    catch (error) {
+      const crewActor = this._getCrewActor();
+      const parsedTier = Number(crewActor?.system?.tier);
+      current_tier = Number.isFinite(parsedTier) ? parsedTier : 0;
+    } catch (error) {
       console.warn("No Crew is attached to the Actor.");
       console.error(error);
     }
@@ -160,7 +175,10 @@ export class BladesActor extends Actor {
             <span style="width:200px">
               <label>${game.i18n.localize("BITD.RollNumberOfDice")}:</label>
               <select id="qty" name="qty">
-                ${Array(11).fill().map((item, i) => `<option value="${i}">${i}d</option>`).join('')}
+                ${Array.from({ length: 11 }, (_, i) => {
+                  const selected = i === sanitizedDefaultDice ? " selected" : "";
+                  return `<option value="${i}"${selected}>${i}d</option>`;
+                }).join("")}
               </select>
             </span>
           </div>
@@ -371,32 +389,34 @@ export class BladesActor extends Actor {
 
   getMaxStress() {
     let max_stress = this.system.stress.max;
-    let crew = this.system.crew;
-    if (crew.length > 0) {
-      let crew_actor = game.actors.get(crew[0].id);
-      max_stress = max_stress + crew_actor.system.scoundrel.add_stress;
+    const crew_actor = this._getCrewActor();
+    if (crew_actor) {
+      const bonus = Number(crew_actor?.system?.scoundrel?.add_stress);
+      if (Number.isFinite(bonus)) {
+        max_stress += bonus;
+      }
     }
     return max_stress;
   }
 
   getMaxTrauma() {
     let max_trauma = this.system.trauma.max;
-    let crew = this.system.crew;
-    if (crew.length > 0) {
-      let crew_actor = game.actors.get(crew[0].id);
-      max_trauma = max_trauma + crew_actor.system.scoundrel.add_trauma;
+    const crew_actor = this._getCrewActor();
+    if (crew_actor) {
+      const bonus = Number(crew_actor?.system?.scoundrel?.add_trauma);
+      if (Number.isFinite(bonus)) {
+        max_trauma += bonus;
+      }
     }
     return max_trauma;
   }
 
   getHasMastery(){
-    let has_mastery = false;
-    let crew = this.system.crew;
-    if (crew.length > 0) {
-      let crew_actor = game.actors.get(crew[0].id);
-      has_mastery = crew_actor.system.scoundrel.mastery;
+    const crew_actor = this._getCrewActor();
+    if (!crew_actor) {
+      return false;
     }
-    return has_mastery
+    return Boolean(crew_actor?.system?.scoundrel?.mastery);
   }
   
   getHealingMin(){

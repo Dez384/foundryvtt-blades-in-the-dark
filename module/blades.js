@@ -19,6 +19,7 @@ import { BladesClockSheet } from "./blades-clock-sheet.js";
 import { BladesNPCSheet } from "./blades-npc-sheet.js";
 import { BladesFactionSheet } from "./blades-faction-sheet.js";
 import * as migrations from "./migration.js";
+import { getActorSheetClass, getItemSheetClass, registerActorSheet, unregisterActorSheet, registerItemSheet, unregisterItemSheet } from "./compat.js";
 
 window.BladesHelpers = BladesHelpers;
 
@@ -44,19 +45,6 @@ Hooks.once("init", async function() {
 
   // Register System Settings
   registerSystemSettings();
-
-  // Register sheet application classes
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("blades", BladesActorSheet, { types: ["character"], makeDefault: true });
-  Actors.registerSheet("blades", BladesCrewSheet, { types: ["crew"], makeDefault: true });
-  Actors.registerSheet("blades", BladesFactionSheet, { types: ["factions"], makeDefault: true });
-  Actors.registerSheet("blades", BladesClockSheet, { types: ["\uD83D\uDD5B clock"], makeDefault: true });
-  Actors.registerSheet("blades", BladesNPCSheet, { types: ["npc"], makeDefault: true });
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("blades", BladesItemSheet, {makeDefault: true});
-  await preloadHandlebarsTemplates();
-
-  Actors.registeredSheets.forEach(element => console.log(element.Actor.name));
 
 
   if (game.settings.get('blades-in-the-dark', "PublicClocks")) {
@@ -330,8 +318,25 @@ Hooks.once("init", async function() {
 
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
+ * and register sheets. Sheet registration is delayed until the ready hook so the DocumentSheetConfig
+ * API and the new foundry.documents collections are guaranteed to exist on V13+ while still
+ * allowing the compatibility helpers to fall back on older cores.
  */
-Hooks.once("ready", function() {
+Hooks.once("ready", async function() {
+  const actorSheetClass = getActorSheetClass();
+  const itemSheetClass = getItemSheetClass();
+
+  unregisterActorSheet("core", actorSheetClass);
+  registerActorSheet("blades", BladesActorSheet, { types: ["character"], makeDefault: true });
+  registerActorSheet("blades", BladesCrewSheet, { types: ["crew"], makeDefault: true });
+  registerActorSheet("blades", BladesFactionSheet, { types: ["factions"], makeDefault: true });
+  registerActorSheet("blades", BladesClockSheet, { types: ["\uD83D\uDD5B clock"], makeDefault: true });
+  registerActorSheet("blades", BladesNPCSheet, { types: ["npc"], makeDefault: true });
+  unregisterItemSheet("core", itemSheetClass);
+  registerItemSheet("blades", BladesItemSheet, {makeDefault: true});
+
+  await preloadHandlebarsTemplates();
+
 /**
   // Determine whether a system migration is required
   const currentVersion = game.settings.get("bitd", "systemMigrationVersion");
@@ -377,4 +382,3 @@ Hooks.on("renderSceneControls", async (app, html) => {
 	}
 
 });
-

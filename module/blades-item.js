@@ -1,4 +1,5 @@
 import { BladesHelpers } from "./blades-helpers.js";
+import { renderHandlebarsTemplate as renderTemplate } from "./compat.js";
 
 /**
  * Extend the basic Item
