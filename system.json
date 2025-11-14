@@ -5,12 +5,12 @@
   "version": "6.0.3",
   "compatibility": {
     "minimum": 11,
-    "verified": "13.346"
+    "verified": "13.351"
   },
   "background": "systems/blades-in-the-dark/images/BITD_title.webp",
   "url": "https://github.com/Dez384/foundryvtt-blades-in-the-dark/",
   "manifest": "https://raw.githubusercontent.com/Dez384/foundryvtt-blades-in-the-dark/master/system.json",
-  "download": "https://github.com/Dez384/foundryvtt-blades-in-the-dark/archive/refs/tags/v6.0.3.zip",
+  "download": "https://github.com/Dez384/foundryvtt-blades-in-the-dark/archive/refs/tags/v6.0.4.zip",
   "authors": [
     { "name": "megastruktur" },
     { "name": "drewg13" },

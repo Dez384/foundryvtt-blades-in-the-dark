@@ -1,5 +1,9 @@
+v.6.0.4
+- Fix Foundryv13 deprecation errors (#43 #56, @ImproperSubset)
+- Fix Crew tier initializing as NaN (#55, @ImproperSubset)
+
 v.6.0.3
-- Added a button to add new contacts directly to character/crew sheets *#47, @CalibanAngel)
+- Added a button to add new contacts directly to character/crew sheets (#47, @CalibanAngel)
 
 v.6.0.2
 - Added Brazilian Portuguese translation (#38, @LucasPicoli)
