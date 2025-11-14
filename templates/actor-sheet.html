@@ -396,7 +396,10 @@
                     {{#if (eq this.standing "friend" )}} fa-caret-up green-icon
             {{else if (eq this.standing "rival")}} fa-caret-down red-icon
             {{else}}fa-minus
-            {{/if}}"></i>
+            {{/if}}"
+               role="button"
+               tabindex="0"
+               aria-label="Toggle standing"></i>
             <class="standing-toggle"><a class="open-friend"><strong>{{this.name}}</strong></a>, {{this.description_short}}
             <!--
             <a class="acquaintance-delete" data-tooltip="{{localize 'BITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>

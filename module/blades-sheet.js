@@ -114,6 +114,12 @@ export class BladesSheet extends BaseActorSheet {
       acquaintances.splice(clickedAcqIdx, 1, clickedAcq);
       this.actor.update({system: {acquaintances : acquaintances}});
     });
+	html.find('.standing-toggle').keydown(ev => {
+	  if (ev.key === " " || ev.key === "Spacebar" || ev.key === "Enter") {
+		 ev.preventDefault();
+		 ev.currentTarget.click();
+	  }
+	});
 	
 	  // Open Acquaintance
     html.find('.open-friend').click(ev => {
