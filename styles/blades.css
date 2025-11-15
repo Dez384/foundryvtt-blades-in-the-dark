@@ -1049,6 +1049,19 @@
   width: 1.2em;
   text-align: center;
 }
+.blades-in-the-dark.crew.sheet .acquaintance i.standing-toggle {
+  cursor: pointer;
+  transition: text-shadow 0.12s ease, transform 0.12s ease;
+}
+.blades-in-the-dark.crew.sheet .acquaintance i.standing-toggle:hover,
+.blades-in-the-dark.crew.sheet .acquaintance i.standing-toggle:focus-visible {
+  text-shadow:
+    0 0 2px #ff0000,
+    0 0 4px #ff0000,
+    0 0 6px #ff0000,
+    0 0 8px #ff4444;
+  transform: scale(1.1);
+}
 .blades-in-the-dark.crew.sheet .acquaintance i.red-icon {
   color: #880000;
 }
@@ -1763,6 +1776,19 @@
   margin-right: 3px;
   width: 1.2em;
   text-align: center;
+}
+.blades-in-the-dark.actor.pc * .acquaintance i.standing-toggle {
+  cursor: pointer;
+  transition: text-shadow 0.12s ease, transform 0.12s ease;
+}
+.blades-in-the-dark.actor.pc .acquaintance i.standing-toggle:hover,
+.blades-in-the-dark.actor.pc .acquaintance i.standing-toggle:focus-visible {
+  text-shadow:
+    0 0 2px #ff0000,
+    0 0 4px #ff0000,
+    0 0 6px #ff0000,
+    0 0 8px #ff4444;
+  transform: scale(1.1);
 }
 .blades-in-the-dark.actor.pc * .acquaintance i.red-icon {
   color: #880000;

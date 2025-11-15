@@ -22,6 +22,7 @@
   "BITD.Heritage": "Heritage",
   "BITD.Background": "Background",
   "BITD.TitleDeleteItem": "Delete item",
+  "BITD.ToggleStanding": "Toggle standing for {name}, currently {standing}",
   "BITD.TitlePostItem": "Post item",
   "BITD.Vice": "Vice",
   "BITD.Class": "Class",

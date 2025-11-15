@@ -22,6 +22,7 @@
   "BITD.Heritage": "Retaggio",
   "BITD.Background": "Background",
   "BITD.TitleDeleteItem": "Cancella oggetto",
+  "BITD.ToggleStanding": "Cambia rapporto di {name}, attualmente {standing}",
   "BITD.TitlePostItem": "Mostra oggetto",
   "BITD.Vice": "Vizio",
   "BITD.Class": "Classe",

@@ -22,6 +22,7 @@
 	"BITD.Heritage": "Raízes",
 	"BITD.Background": "Histórico",
 	"BITD.TitleDeleteItem": "Deletar item",
+	"BITD.ToggleStanding": "Alternar relacionamento de {name}, atualmente {standing}",
 	"BITD.TitlePostItem": "Publicar Artigo",
 	"BITD.Vice": "Vício",
 	"BITD.Class": "Classe",
