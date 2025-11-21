@@ -80,7 +80,15 @@ export const registerSystemSettings = function() {
   } //end if for game.version >12
   else {
 	  
-  const set_array = [['ActionRoll','Action'],['ThreatRoll','Threat'],['PushYourself','Push'],['DeepCutLoad','Load'],['ClockXP','ClockXP'],['Edge','Edge'],['PublicClocks','PublicClocks']];
+  const set_array = [
+    ['ActionRoll','Action', true],
+    ['ThreatRoll','Threat', false],
+    ['PushYourself','Push', false],
+    ['DeepCutLoad','Load', false],
+    ['ClockXP','ClockXP', false],
+    ['Edge','Edge', false],
+    ['PublicClocks','PublicClocks', false]
+  ];
  
   for (let i=0; i<set_array.length; i++) {
 	  
@@ -90,6 +98,7 @@ export const registerSystemSettings = function() {
 		config: true,
 		scope: 'world',
 		type: Boolean,
+		default: set_array[i][2],
 		requiresReload: true
 	});
   }
