@@ -101,11 +101,11 @@ export class BladesHelpers {
     }
 
     if (item_type != "crew") {
-      let pack = game.packs.find(e => e.metadata.name === item_type);
-      let compendium_content = await pack.getDocuments();
-      compendium_items = compendium_content.map(e => {
-        return e
-      });
+      let packs = game.packs.filter(e => e.metadata.name === item_type);
+      let compendium_contents = await Promise.all(packs.map(pack => pack.getDocuments()));
+      for(const compendium_content of compendium_contents) {
+        compendium_items = compendium_items.concat(compendium_content)
+      }
       list_of_items = world_items.concat(compendium_items);
     } else {
       list_of_items = world_items;
