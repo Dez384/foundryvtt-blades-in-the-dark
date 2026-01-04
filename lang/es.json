@@ -22,6 +22,7 @@
   "BITD.Heritage": "Legado",
   "BITD.Background": "Antecedentes",
   "BITD.TitleDeleteItem": "Eliminar elemento",
+  "BITD.ToggleStanding": "Cambiar afinidad de {name}, actualmente {standing}",
   "BITD.TitlePostItem": "Post item",
   "BITD.Vice": "Vicio",
   "BITD.Class": "Libreto",

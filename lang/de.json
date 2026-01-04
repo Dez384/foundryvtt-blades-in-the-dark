@@ -22,6 +22,7 @@
   "BITD.Heritage": "Herkunft",
   "BITD.Background": "Vorgeschichte",
   "BITD.TitleDeleteItem": "Löschen",
+  "BITD.ToggleStanding": "Beziehung für {name} umschalten (aktuell {standing})",
   "BITD.TitlePostItem": "Artikel Senden",									
   "BITD.Vice": "Laster",
   "BITD.Class": "Klasse",

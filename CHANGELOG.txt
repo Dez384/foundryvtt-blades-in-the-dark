@@ -1,3 +1,10 @@
+v.6.0.5
+- Contacts standing toggle now highlights and has accessibility features (#51 #60, @ImproperSubset)
+- Fix Setting defaults in Foundry v11 (#61, @ImproperSubset)
+- Image optimization to decrease file sizes (#64, @KrisAphalon)
+- Enable getAllItemsByType to handle more than one Compendium by metadata name (#66, @cirk2)
+- Fix bug where changing coin on one actor sometimes affected a second actor (#65 #66)
+
 v.6.0.4
 - Fix Foundryv13 deprecation errors (#43 #56, @ImproperSubset)
 - Fix Crew tier initializing as NaN (#55, @ImproperSubset)

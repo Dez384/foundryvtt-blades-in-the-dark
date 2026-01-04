@@ -22,6 +22,7 @@
   "BITD.Heritage": "Origine",
   "BITD.Background": "Antécédent",
   "BITD.TitleDeleteItem": "Supprimer l'objet",
+  "BITD.ToggleStanding": "Basculer la relation de {name}, actuellement {standing}",
   "BITD.TitlePostItem": "Poster l'objet",
   "BITD.Vice": "Vice",
   "BITD.Class": "Classe",
