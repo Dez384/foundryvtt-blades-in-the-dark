@@ -10,8 +10,8 @@
       {{#multiboxes system.coins}}
       <input type="radio" id="coins-{{_id}}-hands-0" name="system.coins" value="0" checked="checked">
 	  {{#times_from 1 system.coins_max.hand}}
-		  <input type="radio" id="coins-{{_id}}-hands-{{this}}" name="system.coins" value="{{this}}">
-		  <label class="radio-toggle" for="coins-{{_id}}-hands-{{this}}"></label>
+		  <input type="radio" id="coins-{{../_id}}-hands-{{this}}" name="system.coins" value="{{this}}">
+		  <label class="radio-toggle" for="coins-{{../_id}}-hands-{{this}}"></label>
       {{/times_from}}
       {{/multiboxes}}
     </div>
