@@ -206,28 +206,40 @@ export class BladesSheet extends BaseActorSheet {
 
     let items = await BladesHelpers.getAllItemsByType(item_type, game);
 
-    const optionRows = items.map((e) => {
-      let addition_price_load = ``;
+    // Filter out "Veteran" items and group by class
+    items = items.filter(i => !i.name.includes("Veteran"));
+    const grouped_items = BladesHelpers.groupItemsByClass(items);
 
-      if (typeof e.system.load !== "undefined") {
-        addition_price_load += `(${e.system.load})`
-      } else if (typeof e.system.price !== "undefined") {
-        addition_price_load += `(${e.system.price})`
+    // Build HTML with grouped items
+    let items_html = '<div class="items-list">';
+    for (const [itemclass, group] of Object.entries(grouped_items)) {
+      items_html += `<div class="item-group"><header>${itemclass}</header>`;
+      for (const item of group) {
+        const trimmedName = BladesHelpers.trimClassFromName(item.name);
+        const description = BladesHelpers.stripHtml(item.system?.description || "");
+
+        let addition_price_load = "";
+        if (typeof item.system.load !== "undefined" && item.system.load) {
+          addition_price_load = `(${item.system.load})`;
+        } else if (typeof item.system.price !== "undefined" && item.system.price) {
+          addition_price_load = `(${item.system.price})`;
+        }
+
+        items_html += `
+          <div class="item-block">
+            <input id="select-item-${item._id}" type="${input_type}" name="select_items" value="${item._id}">
+            <label for="select-item-${item._id}" title="${description}">
+              ${game.i18n.localize(trimmedName)} ${addition_price_load}
+            </label>
+          </div>`;
       }
-
-      return `
-        <div class="item-choice">
-          <input id="select-item-${e._id}" type="${input_type}" name="select_items" value="${e._id}">
-          <label class="flex-horizontal" for="select-item-${e._id}">
-            ${game.i18n.localize(e.name)} ${addition_price_load}
-            <i class="fas fa-question-circle" data-tooltip="${game.i18n.localize(e.system.description)}"></i>
-          </label>
-        </div>`;
-    }).join("");
+      items_html += "</div>";
+    }
+    items_html += "</div>";
 
     const content = `
       <form class="items-to-add">
-        ${optionRows}
+        ${items_html}
       </form>
     `;
 
@@ -236,9 +248,6 @@ export class BladesSheet extends BaseActorSheet {
       content,
       okLabel: game.i18n.localize('Add'),
       cancelLabel: game.i18n.localize('Cancel'),
-      dialog: {
-        // width: "500"
-      }
     });
 
     if (!formResult || !formResult.select_items) {

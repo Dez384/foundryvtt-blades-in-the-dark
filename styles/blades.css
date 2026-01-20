@@ -1882,33 +1882,54 @@
   color: red;
 }
 
+/* Add Items Dialog */
+/* V12+ DialogV2: constrain the dialog-content wrapper */
+.dialog .dialog-content:has(.items-list) {
+  max-height: 400px;
+  overflow-y: auto;
+}
+/* V11 legacy Dialog: constrain the form wrapper */
 .items-to-add {
+  max-height: 400px;
+  overflow-y: auto;
+}
+.items-list {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  gap: 0.5em;
 }
-.items-to-add input[type=radio],
-.items-to-add input[type=checkbox] {
-  display: none;
+.items-list .item-group {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.5em;
 }
-.items-to-add input[type=radio]:checked + label,
-.items-to-add input[type=checkbox]:checked + label {
-  font-weight: bold;
-}
-.items-to-add .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 200px;
+.items-list .item-group header {
   background-color: #191813;
+  padding: 0.2em 0.4em;
+  margin-bottom: 0.5em;
+  font-size: 1.2em;
+  font-family: "Kirsty", serif;
   color: #EEEFFF;
-  text-align: center;
-  padding: 5px;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 9999;
+  text-transform: capitalize;
 }
-.items-to-add .tooltip:hover .tooltiptext {
-  visibility: visible;
+.items-list .item-block {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.1em 0;
+}
+.items-list .item-block label {
+  cursor: pointer;
+}
+.items-list .item-block label:hover {
+  text-decoration: underline;
+}
+.items-list input[type=radio],
+.items-list input[type=checkbox] {
+  margin: 0;
+}
+.items-list input[type=radio]:checked + label,
+.items-list input[type=checkbox]:checked + label {
+  font-weight: bold;
 }
 
 
