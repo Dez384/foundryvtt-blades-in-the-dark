@@ -2,7 +2,8 @@ const FORCE_DIALOG_V1 = false; // Set true locally to test V1 dialogs on modern 
 
 function supportsDialogV2() {
   if (FORCE_DIALOG_V1) return false;
-  return Boolean(foundry?.applications?.api?.DialogV2);
+  const dialogV2 = foundry?.applications?.api?.DialogV2;
+  return Boolean(dialogV2 && typeof dialogV2.wait === "function");
 }
 
 function iconClassToHtml(iconClass) {
@@ -72,21 +73,44 @@ export async function openFormDialog({
 
   if (supportsDialogV2()) {
     const { DialogV2 } = foundry.applications.api;
-    const result = await DialogV2.input({
-      window: { title, ...windowOptions },
-      content,
-      ok: {
+
+    const buttons = [
+      {
+        action: "ok",
         label: okLabel,
         icon: okIcon,
+        default: defaultButton === "ok",
+        callback: (event, button, dialog) => {
+          const formElement =
+            dialog.element?.querySelector("form") ||
+            event.target?.closest("dialog")?.querySelector("form") ||
+            document.querySelector("dialog[open] form");
+          return normalizeFormData(formElement);
+        },
       },
-      cancel: cancelLabel
-        ? {
-            label: cancelLabel,
-            icon: cancelIcon,
-          }
-        : undefined,
+    ];
+
+    if (cancelLabel) {
+      buttons.push({
+        action: "cancel",
+        label: cancelLabel,
+        icon: cancelIcon,
+        default: defaultButton === "cancel",
+        callback: () => undefined,
+      });
+    }
+
+    const result = await DialogV2.wait({
+      window: { title, ...windowOptions },
+      content,
+      buttons,
     });
-    return result ?? undefined;
+
+    // Handle action string returns and close button
+    if (result === undefined || result === "cancel" || result === null) {
+      return undefined;
+    }
+    return result;
   }
 
   return await new Promise((resolve) => {

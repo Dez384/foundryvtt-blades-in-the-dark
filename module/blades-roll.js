@@ -378,49 +378,27 @@ export async function simpleRollPopup() {
 	
   const content = `
       <h2>${game.i18n.localize("BITD.RollSomeDice")}</h2>
-      <form class="bitd-simple-roll-dialog" style="min-width: 560px;">
+      <form class="bitd-simple-roll-dialog">
         <div class="form-group">
           <label>${game.i18n.localize("BITD.RollNumberOfDice")}:</label>
           <select id="qty" name="qty">
             ${Array(11).fill().map((item, i) => `<option value="${i}">${i}d</option>`).join('')}
           </select>
         </div>
-        <fieldset class="form-group" style="display:block;justify-content:space-between;">
+        <fieldset class="form-group">
           <legend>Roll Types</legend>
-          <div class="radio-group" >
-            <label>
-              <input type="radio" id="fortune" name="rollSelection" value="fortune" checked=true> ${game.i18n.localize("BITD.Fortune")}
-            </label>
-          </div>
-          <div class="radio-group">
-            <label>
-              <input type="radio" id="gatherInfo" name="rollSelection" value="gatherInfo"> ${game.i18n.localize("BITD.GatherInformation")}
-            </label>
-          </div>
-          <div class="radio-group">
-            <label>
-              <input type="radio" id="engagement" name="rollSelection" value="engagement"> ${game.i18n.localize("BITD.Engagement")}
-            </label>
-          </div>
-          <div class="radio-group" style="display:flex;flex-direction:row;justify-content:space-between;">
-            <label><input type="radio" id="indulgeVice" name="rollSelection" value="indulgeVice"> ${game.i18n.localize("BITD.IndulgeVice")}</label>
-            <span style="width:200px">
-              <label>${game.i18n.localize('BITD.Stress')}:</label>
-              <select style="width:100px;float:right" id="stress" name="stress">
-				<option value="${current_stress}" selected disabled hidden>${current_stress}</option>
-                ${Array(11).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}
-              </select>
-            </span>
-          </div>
-          <div class="radio-group" style="display:flex;flex-direction:row;justify-content:space-between;">
-            <label><input type="radio" id="acquireAsset" name="rollSelection" value="acquireAsset"> ${game.i18n.localize("BITD.AcquireAsset")}</label>
-            <span style="width:200px">
-              <label>${game.i18n.localize('BITD.CrewTier')}:</label>
-              <select style="width:100px;float:right" id="tier" name="tier">
-			  <option value="${current_tier}" selected disabled hidden>${current_tier}</option>
-                ${Array(5).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}
-              </select>
-            </span>
+          <div style="display:grid; grid-template-columns:auto auto; gap:1em;">
+            <div style="display:grid; gap:0.4em;">
+              <label><input type="radio" id="fortune" name="rollSelection" value="fortune" checked=true> ${game.i18n.localize("BITD.Fortune")}</label>
+              <label><input type="radio" id="gatherInfo" name="rollSelection" value="gatherInfo"> ${game.i18n.localize("BITD.GatherInformation")}</label>
+              <label><input type="radio" id="engagement" name="rollSelection" value="engagement"> ${game.i18n.localize("BITD.Engagement")}</label>
+              <label><input type="radio" id="indulgeVice" name="rollSelection" value="indulgeVice"> ${game.i18n.localize("BITD.IndulgeVice")}</label>
+              <label><input type="radio" id="acquireAsset" name="rollSelection" value="acquireAsset"> ${game.i18n.localize("BITD.AcquireAsset")}</label>
+            </div>
+            <div style="display:grid; gap:0.4em; align-content:end;">
+              <span><label>${game.i18n.localize('BITD.Stress')}:</label> <select id="stress" name="stress"><option value="${current_stress}" selected disabled hidden>${current_stress}</option>${Array(11).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}</select></span>
+              <span><label>${game.i18n.localize('BITD.CrewTier')}:</label> <select id="tier" name="tier"><option value="${current_tier}" selected disabled hidden>${current_tier}</option>${Array(5).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}</select></span>
+            </div>
           </div>
         </fieldset>
         <div className="form-group">
