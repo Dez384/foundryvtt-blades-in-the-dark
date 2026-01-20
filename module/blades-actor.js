@@ -100,7 +100,7 @@ export class BladesActor extends Actor {
 
     let content = `
         <h2>${game.i18n.localize('BITD.Roll')} ${game.i18n.localize(attribute_label)}</h2>
-        <form class="bitd-roll-dialog" style="min-width: 700px;">
+        <form class="bitd-roll-dialog">
           <div class="form-group">
             <label>${game.i18n.localize('BITD.Modifier')}:</label>
             <select id="mod" name="mod">
@@ -109,91 +109,40 @@ export class BladesActor extends Actor {
           </div>`;
     if (BladesHelpers.isAttributeAction(attribute_name)) {
       content += `
-        <fieldset class="form-group" style="display:block;justify-content:space-between;">
-          <legend>Roll Types</legend>
-		  `;
+        <fieldset class="form-group" style="display:grid; gap:0.5em;">
+          <legend>Roll Types</legend>`;
+		// Row 1: Action Roll (if enabled)
 		if (game.settings.get('blades-in-the-dark', 'ActionRoll')) {
 		  content += `
-          <div class="radio-group" style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-            <label style="min-width: 120px; display: inline-flex; align-items:center;">
-              <input type="radio" id="actionRoll" name="rollSelection" value="actionRoll" checked=true> ${game.i18n.localize("BITD.ActionRoll")}
-            </label>
-            <span style="flex:1 1 160px; min-width:150px;">
-              <label>${game.i18n.localize('BITD.Position')}:</label>
-              <select id="pos" name="pos">
-                <option value="controlled">${game.i18n.localize('BITD.PositionControlled')}</option>
-                <option value="risky" selected>${game.i18n.localize('BITD.PositionRisky')}</option>
-                <option value="desperate">${game.i18n.localize('BITD.PositionDesperate')}</option>
-              </select>
-            </span>
-            <span style="flex:1 1 160px; min-width:150px;">
-              <label>${game.i18n.localize('BITD.Effect')}:</label>
-              <select id="fx" name="fx">
-                <option value="limited">${game.i18n.localize('BITD.EffectLimited')}</option>
-                <option value="standard" selected>${game.i18n.localize('BITD.EffectStandard')}</option>
-                <option value="great">${game.i18n.localize('BITD.EffectGreat')}</option>
-              </select>
-            </span>
-          </div>
-		  `;
+          <div style="display:grid; grid-template-columns:auto auto auto; gap:0.5em 1em; align-items:center;">
+            <label><input type="radio" id="actionRoll" name="rollSelection" value="actionRoll" checked=true> ${game.i18n.localize("BITD.ActionRoll")}</label>
+            <span><label>${game.i18n.localize('BITD.Position')}:</label> <select id="pos" name="pos"><option value="controlled">${game.i18n.localize('BITD.PositionControlled')}</option><option value="risky" selected>${game.i18n.localize('BITD.PositionRisky')}</option><option value="desperate">${game.i18n.localize('BITD.PositionDesperate')}</option></select></span>
+            <span><label>${game.i18n.localize('BITD.Effect')}:</label> <select id="fx" name="fx"><option value="limited">${game.i18n.localize('BITD.EffectLimited')}</option><option value="standard" selected>${game.i18n.localize('BITD.EffectStandard')}</option><option value="great">${game.i18n.localize('BITD.EffectGreat')}</option></select></span>
+          </div>`;
 		}
+		// Row 2: Threat Roll (if enabled)
 		if (game.settings.get('blades-in-the-dark', 'ThreatRoll')) {
-		   content += `
-		    <div class="radio-group" style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-            <label style="min-width: 120px; display: inline-flex; align-items:center;"><input type="radio" id="threatRoll" name="rollSelection" value="threatRoll" checked=true> ${game.i18n.localize("BITD.ThreatRoll")}</label>
-            <span style="flex:1 1 160px; min-width:150px;">
-              <label>${game.i18n.localize('BITD.Position')}:</label>
-              <select id="pos2" name="pos2">
-                <option value="risky" selected>${game.i18n.localize('BITD.PositionRisky')}</option>
-                <option value="desperate">${game.i18n.localize('BITD.PositionDesperate')}</option>
-              </select>
-            </span>
-            <span style="flex:1 1 160px; min-width:150px;">
-              <label>${game.i18n.localize('BITD.ExtraThreats')}:</label>
-              <select id="extraThreats" name="extraThreats">
-                ${Array(6).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}
-              </select>
-            </span>
-          </div>
-		  `;
-		}
 		  content += `
-          <div class="radio-group" >
-            <label>
-              <input type="radio" id="fortune" name="rollSelection" value="fortune"> ${game.i18n.localize("BITD.Fortune")}
-            </label>
-          </div>
-          <div class="radio-group">
-            <label>
-              <input type="radio" id="gatherInfo" name="rollSelection" value="gatherInfo"> ${game.i18n.localize("BITD.GatherInformation")}
-            </label>
-          </div>
-          <div class="radio-group">
-            <label>
-              <input type="radio" id="indulgeVice" name="rollSelection" value="indulgeVice"> ${game.i18n.localize("BITD.IndulgeVice")}
-            </label>
-          </div>
-          <div class="radio-group" style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-            <label style="min-width: 120px; display:inline-flex; align-items:center;"><input type="radio" id="engagement" name="rollSelection" value="engagement"> ${game.i18n.localize("BITD.Engagement")}</label>
-            <span style="flex:1 1 200px; min-width:180px;">
-              <label>${game.i18n.localize("BITD.RollNumberOfDice")}:</label>
-              <select id="qty" name="qty">
-                ${Array.from({ length: 11 }, (_, i) => {
-                  const selected = i === sanitizedDefaultDice ? " selected" : "";
-                  return `<option value="${i}"${selected}>${i}d</option>`;
-                }).join("")}
-              </select>
-            </span>
-          </div>
-          <div class="radio-group" style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-            <label style="min-width: 120px; display:inline-flex; align-items:center;"><input type="radio" id="acquireAsset" name="rollSelection" value="acquireAsset"> ${game.i18n.localize("BITD.AcquireAsset")}</label>
-            <span style="flex:1 1 200px; min-width:180px;">
-              <label>${game.i18n.localize('BITD.CrewTier')}:</label>
-              <select id="tier" name="tier">
-                <option value="${current_tier}" selected disabled hidden>${current_tier}</option>
-                ${Array(5).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}
-              </select>
-            </span>
+          <div style="display:grid; grid-template-columns:auto auto auto; gap:0.5em 1em; align-items:center;">
+            <label><input type="radio" id="threatRoll" name="rollSelection" value="threatRoll" checked=true> ${game.i18n.localize("BITD.ThreatRoll")}</label>
+            <span><label>${game.i18n.localize('BITD.Position')}:</label> <select id="pos2" name="pos2"><option value="risky" selected>${game.i18n.localize('BITD.PositionRisky')}</option><option value="desperate">${game.i18n.localize('BITD.PositionDesperate')}</option></select></span>
+            <span><label>${game.i18n.localize('BITD.ExtraThreats')}:</label> <select id="extraThreats" name="extraThreats">${Array(6).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}</select></span>
+          </div>`;
+		}
+		// Row 3: Other roll types
+		content += `
+          <div style="display:grid; grid-template-columns:auto auto; gap:0.4em 1em;">
+            <div style="display:grid; gap:0.4em;">
+              <label><input type="radio" id="fortune" name="rollSelection" value="fortune"> ${game.i18n.localize("BITD.Fortune")}</label>
+              <label><input type="radio" id="gatherInfo" name="rollSelection" value="gatherInfo"> ${game.i18n.localize("BITD.GatherInformation")}</label>
+              <label><input type="radio" id="indulgeVice" name="rollSelection" value="indulgeVice"> ${game.i18n.localize("BITD.IndulgeVice")}</label>
+              <label><input type="radio" id="engagement" name="rollSelection" value="engagement"> ${game.i18n.localize("BITD.Engagement")}</label>
+              <label><input type="radio" id="acquireAsset" name="rollSelection" value="acquireAsset"> ${game.i18n.localize("BITD.AcquireAsset")}</label>
+            </div>
+            <div style="display:grid; gap:0.4em; align-content:end;">
+              <span><label>${game.i18n.localize("BITD.RollNumberOfDice")}:</label> <select id="qty" name="qty">${Array.from({ length: 11 }, (_, i) => { const selected = i === sanitizedDefaultDice ? " selected" : ""; return `<option value="${i}"${selected}>${i}d</option>`; }).join("")}</select></span>
+              <span><label>${game.i18n.localize('BITD.CrewTier')}:</label> <select id="tier" name="tier"><option value="${current_tier}" selected disabled hidden>${current_tier}</option>${Array(5).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}</select></span>
+            </div>
           </div>
         </fieldset>
             `;
