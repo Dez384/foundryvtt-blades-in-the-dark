@@ -218,18 +218,11 @@ export class BladesSheet extends BaseActorSheet {
         const trimmedName = BladesHelpers.trimClassFromName(item.name);
         const description = BladesHelpers.stripHtml(item.system?.description || "");
 
-        let addition_price_load = "";
-        if (typeof item.system.load !== "undefined" && item.system.load) {
-          addition_price_load = `(${item.system.load})`;
-        } else if (typeof item.system.price !== "undefined" && item.system.price) {
-          addition_price_load = `(${item.system.price})`;
-        }
-
         items_html += `
           <div class="item-block">
             <input id="select-item-${item._id}" type="${input_type}" name="select_items" value="${item._id}">
             <label for="select-item-${item._id}" title="${description}">
-              ${game.i18n.localize(trimmedName)} ${addition_price_load}
+              ${game.i18n.localize(trimmedName)}
             </label>
           </div>`;
       }

@@ -1883,26 +1883,31 @@
 }
 
 /* Add Items Dialog */
-/* V12+ DialogV2: constrain the dialog-content wrapper */
-.dialog .dialog-content:has(.items-list) {
-  max-height: 400px;
-  overflow-y: auto;
-}
-/* V11 legacy Dialog: constrain the form wrapper */
+/* V11 legacy Dialog: scroll on the form wrapper */
 .items-to-add {
   max-height: 400px;
   overflow-y: auto;
 }
-.items-list {
+/* V12+ DialogV2: form wrapper is stripped, scroll on dialog-content instead */
+/* Use element selector 'dialog' (not .dialog class) to target only DialogV2 */
+dialog.dialog .dialog-content:has(.items-list) {
+  max-height: 400px;
+  overflow-y: auto;
+}
+/* Items list styling - works for both V11 (.items-to-add present) and V12 (stripped) */
+.items-to-add .items-list,
+dialog.dialog .dialog-content > .items-list {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
-.items-list .item-group {
+.items-to-add .item-group,
+dialog.dialog .dialog-content .item-group {
   background-color: rgba(255, 255, 255, 0.4);
   padding: 0.5em;
 }
-.items-list .item-group header {
+.items-to-add .item-group header,
+dialog.dialog .dialog-content .item-group header {
   background-color: #191813;
   padding: 0.2em 0.4em;
   margin-bottom: 0.5em;
@@ -1911,24 +1916,31 @@
   color: #EEEFFF;
   text-transform: capitalize;
 }
-.items-list .item-block {
+.items-to-add .item-block,
+dialog.dialog .dialog-content .item-block {
   display: flex;
   align-items: center;
   gap: 0.3em;
   padding: 0.1em 0;
 }
-.items-list .item-block label {
+.items-to-add .item-block label,
+dialog.dialog .dialog-content .item-block label {
   cursor: pointer;
 }
-.items-list .item-block label:hover {
+.items-to-add .item-block label:hover,
+dialog.dialog .dialog-content .item-block label:hover {
   text-decoration: underline;
 }
-.items-list input[type=radio],
-.items-list input[type=checkbox] {
+.items-to-add input[type=radio],
+.items-to-add input[type=checkbox],
+dialog.dialog .dialog-content input[type=radio],
+dialog.dialog .dialog-content input[type=checkbox] {
   margin: 0;
 }
-.items-list input[type=radio]:checked + label,
-.items-list input[type=checkbox]:checked + label {
+.items-to-add input[type=radio]:checked + label,
+.items-to-add input[type=checkbox]:checked + label,
+dialog.dialog .dialog-content input[type=radio]:checked + label,
+dialog.dialog .dialog-content input[type=checkbox]:checked + label {
   font-weight: bold;
 }
 
