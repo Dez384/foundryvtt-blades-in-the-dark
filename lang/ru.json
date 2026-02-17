@@ -22,6 +22,7 @@
   "BITD.Heritage": "Происхождение",
   "BITD.Background": "Прошлое",
   "BITD.TitleDeleteItem": "Удалить элемент",
+  "BITD.ToggleStanding": "Изменить статус {name}, сейчас {standing}",
   "BITD.TitlePostItem": "Разместить элемент",
   "BITD.Vice": "Страсть",
   "BITD.Class": "Бланк",

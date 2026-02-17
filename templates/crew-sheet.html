@@ -344,11 +344,14 @@
       {{#each system.acquaintances as |item id|}}
       <div class="item flex-horizontal" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
         <div class="acquaintance" data-acquaintance="{{this.id}}">
-          <i data-acquaintance="{{this.id}}" class="standing-toggle fas
+            <i data-acquaintance="{{this.id}}" class="standing-toggle fas
                     {{#if (eq this.standing "friend" )}} fa-caret-up green-icon
           {{else if (eq this.standing "rival")}} fa-caret-down red-icon
           {{else}}fa-minus
-          {{/if}}"></i>
+          {{/if}}"
+               role="button"
+               tabindex="0"
+               aria-label="{{localize 'BITD.ToggleStanding' name=this.name standing=this.standing}}"></i>
           <class="standing-toggle"><a class="open-friend"><strong>{{this.name}}</strong></a>, {{this.description_short}}
           <!--
           <a class="acquaintance-delete" data-tooltip="{{localize 'BITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
