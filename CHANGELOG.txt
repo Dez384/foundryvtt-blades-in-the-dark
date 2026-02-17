@@ -1,3 +1,16 @@
+v.6.1.0
+- Migrate dialogs to AppV2 (#59 @ImproperSubset)
+- Added missing crew type to Cult crew upgrades (#62)
+- Copied radio toggle listeners from actor sheets to item sheets (#69)
+- Swapped image sets for Experience Clocks to allow greater range of sizes (#70)
+
+v.6.0.5
+- Fixed Contacts Standing toggle not highlighting (#51 @ImproperSubset)
+- Fixed Setting defaults on v11 Foundry (#61 @ImproperSubset)
+- Image Optimization (#64 @KrisAphalon)
+- Enable getAllItemsByType to handle more than one Compendium by metadata name (#66 @cirk2)
+- Fixed Coin updating Error (#65)
+
 v.6.0.4
 - Fix Foundryv13 deprecation errors (#43 #56, @ImproperSubset)
 - Fix Crew tier initializing as NaN (#55, @ImproperSubset)
