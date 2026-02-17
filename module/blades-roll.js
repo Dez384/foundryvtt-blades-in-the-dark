@@ -436,7 +436,7 @@ export async function simpleRollPopup() {
       await bladesRoll(diceQty,"BITD.Vice","","",note,stress);
       break;
     case 'acquireAsset':
-	  diceQty = diceQty + tier; console.log(diceQty);
+	  diceQty = diceQty + tier;
       await bladesRoll(diceQty,"BITD.AcquireAsset","","",note,"",tier);
       break;
     default:
