@@ -1,4 +1,5 @@
 import { generateRandomId } from "./compat.js";
+import { openFormDialog } from "./lib/dialog-compat.js";
 
 export class BladesHelpers {
 
@@ -285,11 +286,11 @@ export class BladesHelpers {
     <form>
       <div class="form-group">
         <label>Name:</label>
-        <input type="text" name="name" required/>
+        <input type="text" name="name" required />
       </div>
       <div class="form-group">
         <label>Description:</label>
-        <input type="text" name="description_short"/>
+        <input type="text" name="description_short" />
       </div>
       <div class="form-group">
         <label>Standing:</label>
@@ -302,36 +303,35 @@ export class BladesHelpers {
     </form>
   `;
 
-    return new Promise((resolve) => {
-      new Dialog({
-        title: "Add Custom Contact",
-        content: dialogContent,
-        buttons: {
-          submit: {
-            label: "Add Contact",
-            callback: async (html) => {
-              const form = html.find('form')[0];
-              const newContact = {
-                id: generateRandomId(),
-                name: form.name.value,
-                description_short: form.description_short.value,
-                standing: form.standing.value
-              };
-
-              const acquaintances = actor.system.acquaintances || [];
-              acquaintances.push(newContact);
-              await actor.update({"system.acquaintances": acquaintances});
-              resolve(true);
-            }
-          },
-          cancel: {
-            label: "Cancel",
-            callback: () => resolve(false)
-          }
-        },
-        default: "submit"
-      }).render(true);
+    const result = await openFormDialog({
+      title: "Add Custom Contact",
+      content: dialogContent,
+      okLabel: "Add Contact",
+      cancelLabel: "Cancel",
+      defaultButton: "ok",
     });
+
+    if (!result) {
+      return false;
+    }
+
+    const name = String(result.name ?? "").trim();
+    if (!name) {
+      ui.notifications?.warn?.("Name is required for a custom contact.");
+      return false;
+    }
+
+    const newContact = {
+      id: generateRandomId(),
+      name,
+      description_short: String(result.description_short ?? ""),
+      standing: result.standing ?? "neutral",
+    };
+
+    const acquaintances = actor.system.acquaintances || [];
+    acquaintances.push(newContact);
+    await actor.update({ "system.acquaintances": acquaintances });
+    return true;
   }
 
   static async getSourcedItemsByType(item_type) {
@@ -396,5 +396,63 @@ export class BladesHelpers {
     let current_crew = actor.system.crew;
     let updated_crew = current_crew.filter(acq => acq._id !== crewId && acq.id !== crewId);
     await actor.update({system: {crew: updated_crew}});
+  }
+
+  /**
+   * Groups items by their system.class property.
+   * Items without a class are grouped under "General".
+   *
+   * @param {Array} item_list - Array of item objects
+   * @returns {Object} Object with class names as keys and arrays of items as values
+   */
+  static groupItemsByClass(item_list) {
+    let grouped_items = {};
+    let generics = [];
+
+    for (const item of item_list) {
+      let itemclass = foundry.utils.getProperty(item, "system.class");
+      if (!itemclass || itemclass === "") {
+        generics.push(item);
+      } else {
+        if (!(itemclass in grouped_items) || !Array.isArray(grouped_items[itemclass])) {
+          grouped_items[itemclass] = [];
+        }
+        grouped_items[itemclass].push(item);
+      }
+    }
+
+    // Sort keys alphabetically and put generics last
+    let sorted = {};
+    Object.keys(grouped_items).sort().forEach(key => {
+      sorted[key] = grouped_items[key];
+    });
+    if (generics.length > 0) {
+      sorted["General"] = generics;
+    }
+
+    return sorted;
+  }
+
+  /**
+   * Removes the class prefix from an item name.
+   * e.g., "(Cutter) Not to be Trifled With" -> "Not to be Trifled With"
+   *
+   * @param {string} name - The item name
+   * @returns {string} The name without the class prefix
+   */
+  static trimClassFromName(name) {
+    return name.replace(/^\([^)]*\)\s*/, "");
+  }
+
+  /**
+   * Strips HTML tags from a string.
+   *
+   * @param {string} html - HTML string to strip
+   * @returns {string} Plain text without HTML tags
+   */
+  static stripHtml(html) {
+    if (!html) return "";
+    let doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
   }
 }
