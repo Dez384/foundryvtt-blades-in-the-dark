@@ -42,6 +42,26 @@ export class BladesItemSheet extends BaseItemSheet {
 	activateListeners(html) {
     super.activateListeners(html);
 
+	//for compatibility with bitd-alternate-sheets v1.0.10
+	let alt_sheets = false;
+	try {alt_sheets = game.modules.get("bitd-alternate-sheets").active;} catch {}
+	if (alt_sheets) {
+		html.find("input.radio-toggle, label.radio-toggle").click((e) => e.preventDefault());
+		html.find("input.radio-toggle, label.radio-toggle").mousedown((e) => {
+			this._onRadioToggle(e);
+		});
+		html.find("input.radio-toggle, label.radio-toggle").contextmenu((e) => {	
+			this._onRadioToggle(e);
+		});		
+	} else {
+		html.find("input.radio-toggle, label.radio-toggle").click((e) => {	
+			this._onRadioToggle(e);
+		});
+		html.find("input.radio-toggle, label.radio-toggle").contextmenu((e) => {	
+			this._onRadioToggle(e);
+		});		
+	}
+
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
@@ -69,4 +89,27 @@ export class BladesItemSheet extends BaseItemSheet {
 
     return sheetData;
   }
+  
+    /* -------------------------------------------- */
+  
+   async _onRadioToggle(event) {
+    let type = event.target.tagName.toLowerCase();
+    let target = event.target;
+    if (type == "label") {
+      let labelID = $(target).attr("for");
+      target = $(`#${labelID}`).get(0);
+    }
+
+    if (target.checked || (event.type == "contextmenu")) {
+      //find the next lowest-value input with the same name and click that one instead
+      let name = target.name;
+      let value = parseInt(target.value) - 1;
+      this.element
+        .find(`input[name="${name}"][value="${value}"]`)
+        .trigger("click");
+    } else {
+      //trigger the click on this one
+      $(target).trigger("click");
+    }
+  }	
 }
