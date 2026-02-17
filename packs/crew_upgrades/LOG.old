@@ -1,3 +1,10 @@
-2024/07/02-20:38:19.069 910 Recovering log #291
-2024/07/02-20:38:19.072 910 Delete type=0 #291
-2024/07/02-20:38:19.072 910 Delete type=3 #290
+2026/02/16-21:08:38.005 31dc Log #177: 0 ops saved to Table #296 OK
+2026/02/16-21:08:38.005 31dc Archiving ..\Data\systems\blades-in-the-dark\packs\crew_upgrades/000177.log: OK
+2026/02/16-21:08:38.012 31dc Log #295: 42 ops saved to Table #297 OK
+2026/02/16-21:08:38.013 31dc Archiving ..\Data\systems\blades-in-the-dark\packs\crew_upgrades/000295.log: OK
+2026/02/16-21:08:38.013 31dc Table #23: 60 entries OK
+2026/02/16-21:08:38.013 31dc Table #199: 60 entries OK
+2026/02/16-21:08:38.013 31dc Table #297: 42 entries OK
+2026/02/16-21:08:38.013 31dc Archiving ..\Data\systems\blades-in-the-dark\packs\crew_upgrades/MANIFEST-000176: OK
+2026/02/16-21:08:38.013 31dc Archiving ..\Data\systems\blades-in-the-dark\packs\crew_upgrades/MANIFEST-000294: OK
+2026/02/16-21:08:38.013 31dc **** Repaired leveldb ..\Data\systems\blades-in-the-dark\packs\crew_upgrades; recovered 3 files; 32126 bytes. Some data may have been lost. ****
