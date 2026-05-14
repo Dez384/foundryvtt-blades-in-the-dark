@@ -11,43 +11,28 @@
 }
 .clock-zero-label {
   color: $almost_black;
+  align-self: flex-start;
 }
 
 .clocks {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+
   &.clocks-4 {
-    @include clock(4, 225) {
-      display: flex;
-      justify-content: center;
-      margin-top: 25px;
-    }
+    @include clock(4, 225);
   }
   &.clocks-6 {
-    @include clock(6, 225) {
-      display: flex;
-      justify-content: center;
-      margin-top: 25px;
-    }
+    @include clock(6, 225);
   }
   &.clocks-8 {
-    @include clock(8, 225, $skew_override: 120) {
-      display: flex;
-      justify-content: center;
-      margin-top: 25px;
-    }
+    @include clock(8, 225);
   }
   &.clocks-10 {
-    @include clock(10, 225, $skew_override: 135) {
-      display: flex;
-      justify-content: center;
-      margin-top: 25px;
-    }
+    @include clock(10, 225);
   }
   &.clocks-12 {
-    @include clock(12, 225) {
-      display: flex;
-      justify-content: center;
-      margin-top: 25px;
-    }
+    @include clock(12, 225);
   }
 }
 
@@ -56,45 +41,50 @@
     margin-bottom: 10px;
   }
 }
-.blades-clock-name {
+
+.clock-name {
   height: 60px;
   text-align: center;
   margin: 10px auto;
+
+  input {
+    height: 40px;
+    line-height: 48px;
+    font-size: 32px;
+    width: 100%;
+    background: none;
+    border: 1px solid transparent;
+    padding: 1px 3px;
+    font-family: "Kirsty", "Crimson Text", serif;
+    border-radius: 3px;
+    color: $almost_black;
+    margin: 3px;
+    text-align: center;
+  }
+
+  &.editable input:hover,
+  &.editable input:focus {
+    border: 1px solid $almost_black;
+  }
 }
-.clock-name input {
-  height: 40px;
-  line-height: 48px;
-  font-size: 32px;
-  width: 100%;
-  background: none;
-  border: 1px solid transparent;
-  padding: 1px 3px;
-  font-family: "Kirsty", "Crimson Text", serif;
-  border-radius: 3px;
-  color: rgb(25, 24, 19);
-  margin: 3px;
-  text-align: center;
-}
-.clock-name.editable input:hover,
-.clock-name.editable input:focus {
-  border: 1px solid rgb(25, 24, 19);
-}
+
 .clock-config {
   text-align: center;
+
   .clock-config-group {
     margin-left: 1.5em;
     display: inline-block;
+
     &:first-child {
       margin-left: 0;
     }
+
     label {
       margin-right: 3px;
     }
+
     select {
       width: 100px;
     }
   }
-}
-@at-root {
-  /* --End Clocks-- */
 }

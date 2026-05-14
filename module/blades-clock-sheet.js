@@ -1,80 +1,79 @@
+import { BladesSheetV2 } from "./blades-sheet-v2.js";
 
-import { BladesSheet } from "./blades-sheet.js";
+const CLOCK_COLORS = {
+  "black":  "BITD.Colors.Black",
+  "blue":   "BITD.Colors.Blue",
+  "green":  "BITD.Colors.Green",
+  "grey":   "BITD.Colors.Grey",
+  "red":    "BITD.Colors.Red",
+  "white":  "BITD.Colors.White",
+  "yellow": "BITD.Colors.Yellow"
+};
+
+const CLOCK_SIZES = { "4": "4", "6": "6", "8": "8", "10": "10", "12": "12" };
 
 /**
- * Extend the basic ActorSheet with some very simple modifications
- * @extends {BladesSheet}
+ * Clock actor sheet. Picks an SVG asset from
+ * {color, type, value} on every save and propagates the new texture to every
+ * placed token of the actor on the current scene.
  */
-export class BladesClockSheet extends BladesSheet {
+export class BladesClockSheet extends BladesSheetV2 {
 
-  /** @override */
-	static get defaultOptions() {
-	  return foundry.utils.mergeObject(super.defaultOptions, {
-  	  classes: ["blades-in-the-dark", "sheet", "actor", "clock"],
-  	  template: "systems/blades-in-the-dark/templates/actors/clock-sheet.html",
-      width: 360,
-      height: 400,
-    });
-  }
+  static DEFAULT_OPTIONS = {
+    classes: [...super.DEFAULT_OPTIONS.classes, "clock"],
+    position: { width: 360, height: 430 },
+    form: {
+      handler: BladesClockSheet._onSubmitForm,
+      submitOnChange: true,
+      closeOnSubmit: false
+    }
+  };
+
+  static PARTS = {
+    body: { template: "systems/blades-in-the-dark/templates/actors/clock-sheet.html" }
+  };
 
   /* -------------------------------------------- */
 
-  /** @override */
-  getData(options) {
-    const superData = super.getData( options );
-    const sheetData = superData.data;
-    sheetData.owner = superData.owner;
-    sheetData.editable = superData.editable;
-    sheetData.isGM = game.user.isGM;
-	sheetData.sizeDropdown = {
-		"4": "4",
-		"6": "6",
-		"8": "8",
-		"10": "10",
-		"12": "12",
-	};
-	sheetData.colorDropdown = {
-		"black": "BITD.Colors.Black",
-		"blue": "BITD.Colors.Blue",
-		"green": "BITD.Colors.Green",
-		"grey": "BITD.Colors.Grey",
-		"red": "BITD.Colors.Red",
-		"white": "BITD.Colors.White",
-		"yellow": "BITD.Colors.Yellow"
-	};
-
-    return sheetData;
+  async _prepareContext(options) {
+    const ctx = await super._prepareContext(options);
+    return {
+      ...ctx,
+      actor: this.actor,
+      document: this.document,
+      _id: this.actor.id,
+      id: this.actor.id,
+      name: this.actor.name,
+      system: this.actor.system,
+      owner: this.actor.isOwner,
+      editable: this.isEditable,
+      cssClass: this.isEditable ? "editable" : "locked",
+      isGM: game.user.isGM,
+      sizeDropdown: CLOCK_SIZES,
+      colorDropdown: CLOCK_COLORS
+    };
   }
 
-    /* -------------------------------------------- */
 
-  /** @override */
-  async _updateObject(event, formData) {
-    let image_path = `systems/blades-in-the-dark/themes/${formData['system.color']}/${formData['system.type']}clock_${formData['system.value']}.svg`;
-    formData['img'] = image_path;
-    formData['prototypeToken.texture.src'] = image_path;
-    let data = [];
-    let update = {
-      "texture.src": image_path
-    };
+  // Updating the actor image and all tokens to the correct segments and fill level
+  static async _onSubmitForm(event, form, formData) {
+    const data = foundry.utils.expandObject(formData.object);
+    const color = data.system?.color ?? this.actor.system.color;
+    const type  = data.system?.type  ?? this.actor.system.type;
+    const value = data.system?.value ?? this.actor.system.value;
+    const imgPath = `systems/blades-in-the-dark/themes/${color}/${type}clock_${value}.svg`;
+    data.img = imgPath;
+    foundry.utils.setProperty(data, "prototypeToken.texture.src", imgPath);
 
-    let tokens = this.actor.getActiveTokens();
-    tokens.forEach( function( token ) {
-      data.push(
-        foundry.utils.mergeObject(
-          { _id: token.id },
-          update
-        )
-      );
-    });
-    if(game.scenes.current){
-      await TokenDocument.updateDocuments( data, { parent: game.scenes.current } )
+    const scene = game.scenes.current;
+    if (scene) {
+      const tokenUpdates = this.actor.getActiveTokens()
+        .map(t => ({ _id: t.id, "texture.src": imgPath }));
+      if (tokenUpdates.length) {
+        await scene.updateEmbeddedDocuments("Token", tokenUpdates);
+      }
     }
 
-    // Update the Actor
-    return this.object.update(formData);
+    await this.actor.update(data);
   }
-
-  /* -------------------------------------------- */
-
 }
