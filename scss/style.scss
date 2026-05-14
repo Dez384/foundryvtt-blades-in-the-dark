@@ -43,6 +43,25 @@ $hover-brightness: 0.8;
   &.item.sheet{
     @import 'import/item-sheet.scss';
   }
+
+  .npc-sheet {
+    .text-line {
+      height: 26px;
+      margin-bottom: 5px;
+      padding: 5px 10px;
+      width: 200px;
+      text-align: right;
+      font-family: Kirsty, serif;
+    }
+    justify-content: start;
+    img {
+      margin: 20px;
+    }
+  }
+
+  .npc-lines {
+    width: 700px;
+  }
 }
 
 //top-level styles

@@ -22,6 +22,8 @@
 @mixin toothradio($width, $height, $unchecked_background, $checked_background, $changeable: true) {
 
   display: flex;
+  /* Hide the browser's default checkbox */
+  @content;
 
   label {
 
@@ -32,7 +34,14 @@
       background-repeat: no-repeat;
       background-size: contain;
       margin-right: 5px;
-  
+      @if $changeable {
+        transition: filter 0.1s;
+        cursor: pointer;
+      }
+      @else {
+        cursor: not-allowed;
+      }
+
       &:last-of-type {
         margin-right: 0px;
       }
@@ -48,21 +57,20 @@
       }
 
       @if $changeable {
-        @include changeable(0.1s, 0.8, 0.9);
-      }
-      @else {
-        cursor: not-allowed;
+        &:hover {
+          filter: brightness(0.8);
+          opacity: 0.9;
+        }
       }
     }
   }
 
-  /* Hide the browser's default checkbox */
   input {
-  
+
     display: none;
-  
+
     &:checked {
-  
+
       & ~ label {
         background-image: url($unchecked_background);
       }
@@ -78,10 +86,13 @@
  */
 @mixin custom_radio($width, $height) {
 
-  display: flex;
   $default_color: $almost_white;
   $accent_color: $almost_black;
   $circle_border_color: $almost_black;
+
+  display: flex;
+  /* Hide the browser's default checkbox */
+  @content;
 
   label {
 
@@ -93,6 +104,8 @@
       vertical-align: middle;
       border: 2px solid $circle_border_color;
       border-radius: 24px;
+      transition: filter 0.1s;
+      cursor: pointer;
 
       &[for$="-0"] {
         height: 5px;
@@ -103,23 +116,30 @@
         margin-right: 0px;
       }
 
-      @include changeable(0.1s, 0.7, 0.7);
+      &:hover {
+        filter: brightness(0.7);
+        opacity: 0.7;
+      }
     }
   }
 
-  /* Hide the browser's default checkbox */
   input {
     display: none;
-  
+
     &:checked {
-  
+
       & ~ label {
         background-color: $default_color;
       }
       & + label {
         // Less opacity here cos otherwise it's barely visible on the dark
-        @include changeable(0.1s, 0.7, 0.7); 
+        transition: filter 0.1s;
+        cursor: pointer;
         background-color: $accent_color;
+        &:hover {
+          filter: brightness(0.7);
+          opacity: 0.7;
+        }
       }
     }
   }
@@ -130,10 +150,13 @@
  */
 @mixin custom_radio_square($side) {
 
-  display: flex;
   $default_color: $almost_white;
   $accent_color: $gold;
   $circle_border_color: $almost_black;
+
+  display: flex;
+  /* Hide the browser's default checkbox */
+  @content;
 
   label {
 
@@ -144,15 +167,19 @@
 
       vertical-align: middle;
       border: 1px solid $circle_border_color;
+      transition: filter 0.1s;
+      cursor: pointer;
 
       &[for$="-0"] {
         margin-right: 0px;
       }
-      @include changeable(0.1s, 0.8, 0.9);
+      &:hover {
+        filter: brightness(0.8);
+        opacity: 0.9;
+      }
     }
   }
 
-  /* Hide the browser's default checkbox */
   input {
     display: none;
   
@@ -175,6 +202,7 @@
 
   display: flex;
   flex-wrap: wrap;
+  @content;
   label {
     cursor: pointer;
     font-size: 19px;
@@ -183,11 +211,17 @@
     -ms-user-select: none;
     user-select: none;
     margin-right: 10px;
-    @include changeable(0.1s, 0.8, 0.9);
-
+    transition: filter 0.1s;
+    cursor: pointer;
     /* Hide the browser's default checkbox */
+
+    &:hover {
+      filter: brightness(0.8);
+      opacity: 0.9;
+    }
+
     input {
-      
+
       display: none;
 
       &:checked ~ .checkmark {
@@ -206,13 +240,14 @@
 /*
  * Create Clock
  */
-@mixin clock($segments, $size, $default_color:null, $accent_color:null) {
+@mixin clock($segments, $size, $default_color:null, $accent_color:null, $skew_override:null) {
 
   $angle: calc(360 / $segments);
-  $skew: 90 + $angle;
+  $skew: if($skew_override != null, $skew_override, 90 + $angle);
   $border_width: 3;
 
   position: relative;
+  @content;
 
   .blades-clock {
 
@@ -279,19 +314,23 @@
  * Turf Block
  */
 @mixin turf_block($turf_width, $turf_height) {
-  @include changeable(0.1s, 0.8, 0.9);
-
-
   $turf_margin: 20px;
   $connector_height: math.div($turf_height, 10);
   $connector_width: $turf_margin * 2;
 
+  transition: filter 0.1s;
+  cursor: pointer;
   width: $turf_width;
   height: $turf_height;
   background-color: $lightgray;
   position: relative;
   margin: $turf_margin;
   flex-grow: initial;
+
+  &:hover {
+    filter: brightness(0.8);
+    opacity: 0.9;
+  }
 
   &.turf-selected {
     .connector {
@@ -375,6 +414,8 @@
  @mixin toothradio_single($width, $height, $unchecked_background, $checked_background) {
 
   display: flex;
+  /* Hide the browser's default checkbox */
+  @content;
 
   label {
     @include changeable(0.1s, 0.8, 0.9);
@@ -385,14 +426,13 @@
       background-repeat: no-repeat;
       background-size: contain;
       margin-right: 5px;
-  
+
       &:last-of-type {
         margin-right: 0px;
       }
     }
   }
 
-  /* Hide the browser's default checkbox */
   input {
   
     display: none;
@@ -411,6 +451,8 @@
  @mixin custom_radio_round($diameter, $circle_border_color, $default_color, $accent_color) {
 
   display: flex;
+  /* Hide the browser's default checkbox */
+  @content;
 
   label {
     @include changeable(0.1s, 0.8, 0.9);
@@ -425,7 +467,6 @@
     }
   }
 
-  /* Hide the browser's default checkbox */
   input {
     display: none;
   

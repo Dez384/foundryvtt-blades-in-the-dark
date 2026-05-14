@@ -25,6 +25,7 @@ $coin_margin: 3px;
   }
   .item-control {
     flex-grow: 1;
+    max-width: 18px;
   }
   .item-body,
   .item-class-label {
@@ -32,8 +33,22 @@ $coin_margin: 3px;
   }
 }
 
+.item-crew-rep {
+  height: 35px;
+  padding-top: 10px;
+  justify-content: start;
+}
+
 .item-class-label {
+  margin-top: 4px;
   margin-bottom: 10px;
+  font-weight: bold;
+  width: 125px;
+}
+
+.item-crew-rep .item {
+  margin-bottom: 10px;
+  width: 150px;
 }
 
 .name,
@@ -49,15 +64,17 @@ form {
 }
 
 nav{
+  width: 512px;
   padding-bottom: 10px;
 }
 
 
 // Crew Coins
 .crew-coins {
-  @include custom_radio_square($coin_size);
-  flex-wrap: wrap;
-  max-width: 4 * ($coin_size + $coin_margin);
+  @include custom_radio_square($coin_size) {
+    flex-wrap: wrap;
+    max-width: 4 * ($coin_size + $coin_margin);
+  }
 
   label {
     margin-right: $coin_margin;
@@ -70,10 +87,11 @@ nav{
 .crew-reputation {
   border-top: 3px solid $almost_black;
   @include toothradio(17px, 50px, "assets/teeth/stresstooth-halfgrey.png", "assets/teeth/stresstooth-red.png");
-
-  input:disabled + label {
-    background-image: url(assets/teeth/stresstooth-black.png);
-  }
+}
+@at-root {
+  /*.blades-in-the-dark.crew.sheet .crew-reputation input:disabled + label {
+  background-image: url(assets/teeth/stresstooth-black.png);
+} */
 }
 
 // Turfs.
@@ -117,8 +135,9 @@ nav{
 
 .crew-hold {
   border-top: 3px solid $almost_black;
-  @include toothradio_single(17px, 50px, "assets/teeth/stresstooth-halfgrey.png", "assets/teeth/stresstooth-red.png");
-  width: 221px;
+  @include toothradio_single(17px, 50px, "assets/teeth/stresstooth-halfgrey.png", "assets/teeth/stresstooth-red.png") {
+    width: 221px;
+  }
 }
 
 .crew-tier {
@@ -187,6 +206,38 @@ nav{
   }
 }
 
+.acquaintance {
+  i {
+    padding: 1px;
+    margin-right: 3px;
+    width: 1.2em;
+    text-align: center;
+
+    &.standing-toggle {
+      cursor: pointer;
+      transition: text-shadow 0.12s ease, transform 0.12s ease;
+
+      &:hover,
+      &:focus-visible {
+        text-shadow:
+          0 0 2px #ff0000,
+          0 0 4px #ff0000,
+          0 0 6px #ff0000,
+          0 0 8px #ff4444;
+        transform: scale(1.1);
+      }
+    }
+
+    &.red-icon {
+      color: #880000;
+    }
+
+    &.green-icon {
+      color: #006600;
+    }
+  }
+}
+
 .cohorts {
   flex-wrap: wrap;
 
@@ -248,15 +299,29 @@ nav{
 }
 
 .class-name {
-  width: 512px;
-  height: 120px;
+  width: 320px;
+  height: 135px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   font-size: 48px;
   text-transform: uppercase;
   border: 3px solid $almost_black;
+}
 
+.hunting-ground {
+  width: 180px;
+  height: 120px;
+  text-align: center;
+}
+
+.hunting-ground-label a {
+  font-size: 16px;
+  font-family: "Crimson Text", serif;
+  font-weight: bold;
+}
+
+.class-name {
   .big-name {
     font-weight: bold;
     font-family: Kirsty, serif;
@@ -275,6 +340,7 @@ nav{
   display: flex;
   flex-direction: row;
   margin-bottom: 0px;
+  /* Trauma */
 
   > * {
     margin-right: 10px;
@@ -293,12 +359,12 @@ nav{
     @include toothradio(17px, 50px, "assets/teeth/stresstooth-halfgrey.png", "assets/teeth/stresstooth-red.png");
   }
 
-  /* Trauma */
   .small-teeth-container {
 
     .small-teeth-wrap {
-      @include toothradio(17px, 50px, "assets/teeth/shorttooth-grey.png", "assets/teeth/shorttooth-red.png", false);
-      flex-direction: column;
+      @include toothradio(17px, 50px, "assets/teeth/shorttooth-grey.png", "assets/teeth/shorttooth-red.png", false) {
+        flex-direction: column;
+      }
 
       .small-teeth {
         display: flex;
@@ -308,9 +374,10 @@ nav{
   }
 
   .trauma-list {
-    @include check_underscore();
-    justify-content: space-between;
-    align-items: flex-start;
+    @include check_underscore() {
+      justify-content: space-between;
+      align-items: flex-start;
+    }
   }
 
 }

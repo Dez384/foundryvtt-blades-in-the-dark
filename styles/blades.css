@@ -112,6 +112,7 @@
   line-height: 10px;
   vertical-align: super;
 }
+
 .blades-in-the-dark section {
   display: flex;
   flex-direction: column;
@@ -425,7 +426,6 @@
   display: flex;
   justify-content: center;
   margin-top: 25px;
-
 }
 .blades-in-the-dark .clocks.clocks-10 .blades-clock {
   position: relative;
@@ -567,43 +567,43 @@
   margin-bottom: 10px;
 }
 .blades-in-the-dark .blades-clock-name {
-    height: 60px;
-    text-align: center;
-	margin: 10px auto;
+  height: 60px;
+  text-align: center;
+  margin: 10px auto;
 }
 .blades-in-the-dark .clock-name input {
-    height: 40px;
-    line-height: 48px;
-    font-size: 32px;
-    width: 100%;
-    background: none;
-    border: 1px solid transparent;
-    padding: 1px 3px;
-    font-family: "Kirsty", "Crimson Text", serif;
-    border-radius: 3px;
-    color: rgb(25, 24, 19);
-    margin: 3px;
-	text-align: center;
+  height: 40px;
+  line-height: 48px;
+  font-size: 32px;
+  width: 100%;
+  background: none;
+  border: 1px solid transparent;
+  padding: 1px 3px;
+  font-family: "Kirsty", "Crimson Text", serif;
+  border-radius: 3px;
+  color: rgb(25, 24, 19);
+  margin: 3px;
+  text-align: center;
 }
 .blades-in-the-dark .clock-name.editable input:hover,
 .blades-in-the-dark .clock-name.editable input:focus {
-    border: 1px solid rgb(25, 24, 19);
+  border: 1px solid rgb(25, 24, 19);
 }
 .blades-in-the-dark .clock-config {
-    text-align: center;
+  text-align: center;
 }
 .blades-in-the-dark .clock-config .clock-config-group {
-    margin-left: 1.5em;
-    display: inline-block;
+  margin-left: 1.5em;
+  display: inline-block;
 }
 .blades-in-the-dark .clock-config .clock-config-group:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 .blades-in-the-dark .clock-config .clock-config-group label {
-    margin-right: 3px;
+  margin-right: 3px;
 }
 .blades-in-the-dark .clock-config .clock-config-group select {
-    width: 100px;
+  width: 100px;
 }
 /* --End Clocks-- */
 .blades-in-the-dark.crew.sheet .coins {
@@ -1053,13 +1053,8 @@
   cursor: pointer;
   transition: text-shadow 0.12s ease, transform 0.12s ease;
 }
-.blades-in-the-dark.crew.sheet .acquaintance i.standing-toggle:hover,
-.blades-in-the-dark.crew.sheet .acquaintance i.standing-toggle:focus-visible {
-  text-shadow:
-    0 0 2px #ff0000,
-    0 0 4px #ff0000,
-    0 0 6px #ff0000,
-    0 0 8px #ff4444;
+.blades-in-the-dark.crew.sheet .acquaintance i.standing-toggle:hover, .blades-in-the-dark.crew.sheet .acquaintance i.standing-toggle:focus-visible {
+  text-shadow: 0 0 2px #ff0000, 0 0 4px #ff0000, 0 0 6px #ff0000, 0 0 8px #ff4444;
   transform: scale(1.1);
 }
 .blades-in-the-dark.crew.sheet .acquaintance i.red-icon {
@@ -1577,7 +1572,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* Hide the browser's default checkbox */
 }
 .blades-in-the-dark.actor.pc * .attributes {
   display: flex;
@@ -1709,7 +1703,6 @@
 .blades-in-the-dark.actor.pc * .item .item-control {
   flex-grow: 1;
 }
-
 .blades-in-the-dark.actor.pc * .item-class-label {
   margin-bottom: 10px;
 }
@@ -1783,13 +1776,10 @@
 }
 .blades-in-the-dark.actor.pc .acquaintance i.standing-toggle:hover,
 .blades-in-the-dark.actor.pc .acquaintance i.standing-toggle:focus-visible {
-  text-shadow:
-    0 0 2px #ff0000,
-    0 0 4px #ff0000,
-    0 0 6px #ff0000,
-    0 0 8px #ff4444;
+  text-shadow: 0 0 2px #ff0000, 0 0 4px #ff0000, 0 0 6px #ff0000, 0 0 8px #ff4444;
   transform: scale(1.1);
 }
+
 .blades-in-the-dark.actor.pc * .acquaintance i.red-icon {
   color: #880000;
 }
@@ -1839,6 +1829,7 @@
 .blades-in-the-dark .npc-lines {
   width: 700px;
 }
+
 .chat-label {
   background-color: #191813;
   font-family: Kirsty, serif;
@@ -1914,12 +1905,14 @@
   max-height: 400px;
   overflow-y: auto;
 }
+
 /* V12+ DialogV2: form wrapper is stripped, scroll on dialog-content instead */
 /* Use element selector 'dialog' (not .dialog class) to target only DialogV2 */
 dialog.dialog .dialog-content:has(.items-list) {
   max-height: 400px;
   overflow-y: auto;
 }
+
 /* Items list styling - works for both V11 (.items-to-add present) and V12 (stripped) */
 .items-to-add .items-list,
 dialog.dialog .dialog-content > .items-list {
@@ -1927,11 +1920,13 @@ dialog.dialog .dialog-content > .items-list {
   flex-direction: column;
   gap: 0.5em;
 }
+
 .items-to-add .item-group,
 dialog.dialog .dialog-content .item-group {
   background-color: rgba(255, 255, 255, 0.4);
   padding: 0.5em;
 }
+
 .items-to-add .item-group header,
 dialog.dialog .dialog-content .item-group header {
   background-color: #191813;
@@ -1942,6 +1937,7 @@ dialog.dialog .dialog-content .item-group header {
   color: #EEEFFF;
   text-transform: capitalize;
 }
+
 .items-to-add .item-block,
 dialog.dialog .dialog-content .item-block {
   display: flex;
@@ -1949,26 +1945,29 @@ dialog.dialog .dialog-content .item-block {
   gap: 0.3em;
   padding: 0.1em 0;
 }
+
 .items-to-add .item-block label,
 dialog.dialog .dialog-content .item-block label {
   cursor: pointer;
 }
+
 .items-to-add .item-block label:hover,
 dialog.dialog .dialog-content .item-block label:hover {
   text-decoration: underline;
 }
+
 .items-to-add input[type=radio],
 .items-to-add input[type=checkbox],
 dialog.dialog .dialog-content input[type=radio],
 dialog.dialog .dialog-content input[type=checkbox] {
   margin: 0;
 }
+
 .items-to-add input[type=radio]:checked + label,
 .items-to-add input[type=checkbox]:checked + label,
 dialog.dialog .dialog-content input[type=radio]:checked + label,
 dialog.dialog .dialog-content input[type=checkbox]:checked + label {
   font-weight: bold;
 }
-
 
 /*# sourceMappingURL=blades.css.map */
