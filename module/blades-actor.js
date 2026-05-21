@@ -131,18 +131,19 @@ export class BladesActor extends Actor {
 		}
 		// Row 3: Other roll types
 		content += `
-          <div style="display:grid; grid-template-columns:auto auto; gap:0.4em 1em;">
-            <div style="display:grid; gap:0.4em;">
-              <label><input type="radio" id="fortune" name="rollSelection" value="fortune"> ${game.i18n.localize("BITD.Fortune")}</label>
-              <label><input type="radio" id="gatherInfo" name="rollSelection" value="gatherInfo"> ${game.i18n.localize("BITD.GatherInformation")}</label>
-              <label><input type="radio" id="indulgeVice" name="rollSelection" value="indulgeVice"> ${game.i18n.localize("BITD.IndulgeVice")}</label>
-              <label><input type="radio" id="engagement" name="rollSelection" value="engagement"> ${game.i18n.localize("BITD.Engagement")}</label>
-              <label><input type="radio" id="acquireAsset" name="rollSelection" value="acquireAsset"> ${game.i18n.localize("BITD.AcquireAsset")}</label>
-            </div>
-            <div style="display:grid; gap:0.4em; align-content:end;">
-              <span><label>${game.i18n.localize("BITD.RollNumberOfDice")}:</label> <select id="qty" name="qty">${Array.from({ length: 11 }, (_, i) => { const selected = i === sanitizedDefaultDice ? " selected" : ""; return `<option value="${i}"${selected}>${i}d</option>`; }).join("")}</select></span>
-              <span><label>${game.i18n.localize('BITD.CrewTier')}:</label> <select id="tier" name="tier"><option value="${current_tier}" selected disabled hidden>${current_tier}</option>${Array(5).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}</select></span>
-            </div>
+          <div style="display:grid; grid-template-columns:auto auto auto; column-gap:0.5em; row-gap:0.4em; align-items:center;">
+            <label><input type="radio" id="fortune" name="rollSelection" value="fortune"> ${game.i18n.localize("BITD.Fortune")}</label>
+            <span style="grid-column:2 / 4;"></span>
+            <label><input type="radio" id="gatherInfo" name="rollSelection" value="gatherInfo"> ${game.i18n.localize("BITD.GatherInformation")}</label>
+            <span style="grid-column:2 / 4;"></span>
+            <label><input type="radio" id="indulgeVice" name="rollSelection" value="indulgeVice"> ${game.i18n.localize("BITD.IndulgeVice")}</label>
+            <span style="grid-column:2 / 4;"></span>
+            <label><input type="radio" id="engagement" name="rollSelection" value="engagement"> ${game.i18n.localize("BITD.Engagement")}</label>
+            <label style="margin:0; justify-self:end; white-space:nowrap;">${game.i18n.localize("BITD.RollNumberOfDice")}:</label>
+            <select id="qty" name="qty" style="width:auto; min-width:4.5em; justify-self:start;">${Array.from({ length: 11 }, (_, i) => { const selected = i === sanitizedDefaultDice ? " selected" : ""; return `<option value="${i}"${selected}>${i}d</option>`; }).join("")}</select>
+            <label><input type="radio" id="acquireAsset" name="rollSelection" value="acquireAsset"> ${game.i18n.localize("BITD.AcquireAsset")}</label>
+            <label style="margin:0; justify-self:end; white-space:nowrap;">${game.i18n.localize('BITD.CrewTier')}:</label>
+            <select id="tier" name="tier" style="width:auto; min-width:4.5em; justify-self:start;"><option value="${current_tier}" selected disabled hidden>${current_tier}</option>${Array(5).fill().map((item, i) => `<option value="${i}">${i}</option>`).join('')}</select>
           </div>
         </fieldset>
             `;
