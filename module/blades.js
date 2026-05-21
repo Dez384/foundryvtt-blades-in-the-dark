@@ -20,6 +20,7 @@ import { BladesNPCSheet } from "./blades-npc-sheet.js";
 import { BladesFactionSheet } from "./blades-faction-sheet.js";
 import * as migrations from "./migration.js";
 import { getActorSheetClass, getItemSheetClass, registerActorSheet, unregisterActorSheet, registerItemSheet, unregisterItemSheet } from "./compat.js";
+import { ClockData } from "./data/clock.js";
 
 window.BladesHelpers = BladesHelpers;
 
@@ -42,6 +43,10 @@ Hooks.once("init", async function() {
   CONFIG.Item.documentClass = BladesItem;
   CONFIG.Actor.documentClass = BladesActor;
   CONFIG.ActiveEffect.documentClass = BladesActiveEffect;
+
+  CONFIG.Actor.dataModels = {
+    "🕛 clock": ClockData
+  };
 
   // Register System Settings
   registerSystemSettings();
@@ -266,7 +271,7 @@ Hooks.once("init", async function() {
       let checked = (parseInt(current_value) === i) ? 'checked' : '';
       html += `
         <input type="radio" value="${i}" id="clock-${i}-${uniq_id}" data-dType="String" name="${parameter_name}" ${checked}>
-        <label class="radio-toggle" for="clock-${i}-${uniq_id}"></label>
+        <label class="radio-toggle" data-action="bid.radioToggle" for="clock-${i}-${uniq_id}"></label>
       `;
     }
 

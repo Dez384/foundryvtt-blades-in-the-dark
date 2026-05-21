@@ -56,6 +56,7 @@ $hover-brightness: 0.8;
     flex-direction: row;
     margin-bottom: 0px;
     margin-top: 10px;
+    /* Trauma */
 
     > * {
       margin-right: 10px;
@@ -74,12 +75,12 @@ $hover-brightness: 0.8;
       @include toothradio(17px, 50px, "assets/teeth/stresstooth-halfgrey.png", "assets/teeth/stresstooth-red.png");
     }
 
-    /* Trauma */
     .small-teeth-container {
 
       .small-teeth-wrap {
-        @include toothradio(17px, 50px, "assets/teeth/shorttooth-grey.png", "assets/teeth/shorttooth-red.png", false);
-        flex-direction: column;
+        @include toothradio(17px, 50px, "assets/teeth/shorttooth-grey.png", "assets/teeth/shorttooth-red.png", false) {
+          flex-direction: column;
+        }
 
         .small-teeth {
           display: flex;
@@ -89,9 +90,10 @@ $hover-brightness: 0.8;
     }
 
     .trauma-list {
-      @include check_underscore();
-      justify-content: space-between;
-      align-items: flex-start;
+      @include check_underscore() {
+        justify-content: space-between;
+        align-items: flex-start;
+      }
     }
 
   }
@@ -135,10 +137,11 @@ $hover-brightness: 0.8;
 
   // Experience teeth
   .teeth-experience {
-    @include toothradio(10px, 30px, "assets/teeth/stresstooth-halfgrey.png", "assets/teeth/stresstooth-red.png");
-    position: absolute;
-    top: 0px;
-    right: 10px;
+    @include toothradio(10px, 30px, "assets/teeth/stresstooth-halfgrey.png", "assets/teeth/xptooth-red.png") {
+      position: absolute;
+      top: 0px;
+      right: 10px;
+    }
   }
 
   .harm-armor {
@@ -185,7 +188,7 @@ $hover-brightness: 0.8;
 
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 225px;
 
     .stripe {
       background-color: $almost_black;
@@ -208,10 +211,11 @@ $hover-brightness: 0.8;
       margin-bottom: 10px;
 
       .stripe-tooth-body {
-        @include toothradio(10px, 30px, "assets/teeth/xptooth-white.png", "assets/teeth/xptooth-red.png");
-        position: absolute;
-        top: 0px;
-        right: 0px;
+        @include toothradio(10px, 30px, "assets/teeth/xptooth-white.png", "assets/teeth/xptooth-red.png") {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+        }
       }
     }
 
@@ -250,10 +254,6 @@ $hover-brightness: 0.8;
     .item-control {
       flex-grow: 1;
     }
-    .item-body,
-    .item-class-label {
-      width: 100px;
-    }
   }
 
   .item-class-label {
@@ -267,6 +267,42 @@ $hover-brightness: 0.8;
   }
 
   @import "coins.scss";
+
+  .acquaintance {
+    line-height: 1em;
+    padding: 2px 5px;
+    i {
+      padding: 1px;
+      margin-right: 3px;
+      width: 1.2em;
+      text-align: center;
+
+      &.standing-toggle {
+        cursor: pointer;
+        transition: text-shadow 0.12s ease, transform 0.12s ease;
+      }
+
+      // Hover/focus shadow emitted at root so the selector doesn't include `*`.
+      @at-root .blades-in-the-dark.actor.pc .acquaintance i.standing-toggle:hover,
+               .blades-in-the-dark.actor.pc .acquaintance i.standing-toggle:focus-visible {
+        text-shadow:
+          0 0 2px #ff0000,
+          0 0 4px #ff0000,
+          0 0 6px #ff0000,
+          0 0 8px #ff4444;
+        transform: scale(1.1);
+      }
+
+      &.red-icon {
+        color: #880000;
+      }
+
+      &.green-icon {
+        color: #006600;
+      }
+    }
+  }
+
 
 
 

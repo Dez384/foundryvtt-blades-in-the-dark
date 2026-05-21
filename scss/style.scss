@@ -15,40 +15,107 @@ $transition-period: 0.2s;
 $hover-opacity: 0.9;
 $hover-brightness: 0.8;
 
+// Layers declared here override Foundry's layers (declared earlier)
+@layer system-base, system-sheets;
 
+// Big block of styles compensating for v1->v2 base style changes
+@layer system-base {
+  form.application.blades-in-the-dark section.window-content {
+    background: #f0e3c0;
+    backdrop-filter: none;
+    color: $almost_black;
+    padding: 8px;
+
+    [data-application-part] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input:not([type="radio"], [type="checkbox"], [type="range"]),
+    select,
+    textarea,
+    button {
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: 1px solid rgba($almost_black, 0.25);
+      padding: 4px 6px;
+      box-sizing: border-box;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="search"],
+    input[type="email"],
+    input[type="url"],
+    input[type="password"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+    }
+
+    label {
+      display: inline-flex;
+      align-items: center;
+      color: $almost_black;
+    }
+  }
+}
 
 
 // Utility imports
 @import 'import/mixin';
 @import 'fonts.scss';
 
-//namespacing to avoid conflicts with other modules
-.blades-in-the-dark{
-  font-family: "Crimson Text", serif;
+// Everything else goes in a layer overriding the previous
+@layer system-sheets {
+  //namespacing to avoid conflicts with other modules
+  .blades-in-the-dark{
+    font-family: "Crimson Text", serif;
 
-  @import 'import/general-styles.scss';
-  @import 'import/clocks.scss';
+    @import 'import/general-styles.scss';
+    @import 'import/clocks.scss';
 
-  &.crew.sheet{
-    @import 'import/crew-sheet.scss';
+    &.crew.sheet{
+      @import 'import/crew-sheet.scss';
+    }
+
+    &.actor.pc{
+      @import 'import/character-sheet.scss';
+    }
+
+    &.actor.clock{
+    }
+
+    &.item.sheet{
+      @import 'import/item-sheet.scss';
+    }
+
+    .npc-sheet {
+      .text-line {
+        height: 26px;
+        margin-bottom: 5px;
+        padding: 5px 10px;
+        width: 200px;
+        text-align: right;
+        font-family: Kirsty, serif;
+      }
+      justify-content: start;
+      img {
+        margin: 20px;
+      }
+    }
+
+    .npc-lines {
+      width: 700px;
+    }
   }
 
-  &.actor.pc{
-    @import 'import/character-sheet.scss';
-  }
-
-  &.actor.clock{
-  }
-
-  &.item.sheet{
-    @import 'import/item-sheet.scss';
-  }
+  //top-level styles
+  @import 'import/chat.scss';
+  @import 'import/dialogs.scss';
+  //@import 'import/tooltip.scss';
 }
-
-//top-level styles
-@import 'import/chat.scss';
-@import 'import/dialogs.scss';
-//@import 'import/tooltip.scss';
 
 //
 //// Colors

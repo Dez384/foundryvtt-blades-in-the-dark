@@ -4,7 +4,7 @@
   "description": "Blades in the Dark game system.",
   "version": "6.1.2",
   "compatibility": {
-    "minimum": 11,
+    "minimum": 14,
     "verified": "14.362"
   },
   "background": "systems/blades-in-the-dark/images/BITD_title.webp",

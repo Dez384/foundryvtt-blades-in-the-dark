@@ -1,4 +1,4 @@
-<form class="{{cssClass}} clock-block" autocomplete="off">
+<div class="{{cssClass}} clock-block" data-application-part="body">
 
 	{{#if editable}}
     <div class="clock-name editable">
@@ -13,14 +13,14 @@
 	<div class="clock-config">
 		<div class="clock-config-group">
 			<label for="system.type"><i class="fa fa-chart-pie"></i></label>
-			<select data-type="String" name="system.type">
+			<select name="system.type">
 				{{selectOptions this.sizeDropdown selected=system.type}}
 
 			</select>
 		</div>
 		<div class="clock-config-group">
 			<label for="system.color"><i class="fa fa-palette"></i></label>
-			<select data-type="String" name="system.color">
+			<select name="system.color">
 				{{selectOptions this.colorDropdown selected=system.color localize=true}}
 
 			</select>
@@ -31,4 +31,4 @@
             {{{blades-clock-color "system.value" system.type system.color system.value _id}}}
         </div>
 
-</form>
+</div>

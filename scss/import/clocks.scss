@@ -1,27 +1,38 @@
+@at-root {
+  /* --Controls minimum size of windows--*/
+}
 &{
-  min-width: 420px;
+  min-width: 360px;
   min-height: 320px;
 }
 
+@at-root {
+  /* --Start Clocks--*/
+}
 .clock-zero-label {
   color: $almost_black;
+  align-self: flex-start;
 }
 
 .clocks {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+
   &.clocks-4 {
-    @include clock(4, 200);
+    @include clock(4, 225);
   }
   &.clocks-6 {
-    @include clock(6, 200);
+    @include clock(6, 225);
   }
   &.clocks-8 {
-    @include clock(8, 200);
+    @include clock(8, 225);
   }
   &.clocks-10 {
-    @include clock(10, 200);
+    @include clock(10, 225);
   }
   &.clocks-12 {
-    @include clock(12, 200);
+    @include clock(12, 225);
   }
 }
 
@@ -29,8 +40,51 @@
   > * {
     margin-bottom: 10px;
   }
-  .blades-clock{
-    margin: 10px auto;
+}
+
+.clock-name {
+  height: 60px;
+  text-align: center;
+  margin: 10px auto;
+
+  input {
+    height: 40px;
+    line-height: 48px;
+    font-size: 32px;
+    width: 100%;
+    background: none;
+    border: 1px solid transparent;
+    padding: 1px 3px;
+    font-family: "Kirsty", "Crimson Text", serif;
+    border-radius: 3px;
+    color: $almost_black;
+    margin: 3px;
+    text-align: center;
+  }
+
+  &.editable input:hover,
+  &.editable input:focus {
+    border: 1px solid $almost_black;
   }
 }
 
+.clock-config {
+  text-align: center;
+
+  .clock-config-group {
+    margin-left: 1.5em;
+    display: inline-block;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    label {
+      margin-right: 3px;
+    }
+
+    select {
+      width: 100px;
+    }
+  }
+}
