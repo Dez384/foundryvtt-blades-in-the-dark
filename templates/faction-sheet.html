@@ -24,7 +24,7 @@
 				<a class="item-control item-post" title="{{localize 'BITD.TitlePostItem'}}"><i class="fas fa-comment"></i></a>
 
 			  <div id="faction-status">
-				<div id="faction-status-label" style="float:left; width: 10em; text-align: right; padding-right: 10px; color: white">{{localize "BITD.Status"}}<br><span style="color: {{#if (eq faction.system.status.value 7)}}deepskyblue{{/if}}{{#if (eq faction.system.status.value 6)}}deepskyblue{{/if}}{{#if (eq faction.system.status.value 5)}}deepskyblue{{/if}}{{#if (eq faction.system.status.value 4)}}white{{/if}}{{#if (eq faction.system.status.value 3)}}red{{/if}}{{#if (eq faction.system.status.value 2)}}red{{/if}}{{#if (eq faction.system.status.value 1)}}red{{/if}}{{#if (eq faction.system.status.value 0)}}black{{/if}}">{{#if (eq faction.system.status.value 7)}}{{localize "BITD.Allies"}}{{/if}}{{#if (eq faction.system.status.value 6)}}{{localize "BITD.Friends"}}{{/if}}{{#if (eq faction.system.status.value 5)}}{{localize "BITD.Associates"}}{{/if}}{{#if (eq faction.system.status.value 4)}}{{localize "BITD.Neutral"}}{{/if}}{{#if (eq faction.system.status.value 3)}}{{localize "BITD.Adversaries"}}{{/if}}{{#if (eq faction.system.status.value 2)}}{{localize "BITD.Enemies"}}{{/if}}{{#if (eq faction.system.status.value 1)}}{{localize "BITD.AtWar"}}{{/if}}{{#if (eq faction.system.status.value 0)}}{{localize "BITD.Defeated"}}{{/if}}</span></div>
+				<div id="faction-status-label" style="float:left; width: 10em; text-align: right; padding-right: 10px; color: white">{{localize "BITD.Status"}}<br><span style="color: {{#if (eq faction.system.status.value 7)}}blue{{/if}}{{#if (eq faction.system.status.value 6)}}blue{{/if}}{{#if (eq faction.system.status.value 5)}}blue{{/if}}{{#if (eq faction.system.status.value 4)}}white{{/if}}{{#if (eq faction.system.status.value 3)}}red{{/if}}{{#if (eq faction.system.status.value 2)}}red{{/if}}{{#if (eq faction.system.status.value 1)}}red{{/if}}{{#if (eq faction.system.status.value 0)}}black{{/if}}">{{#if (eq faction.system.status.value 7)}}{{localize "BITD.Allies"}}{{/if}}{{#if (eq faction.system.status.value 6)}}{{localize "BITD.Friends"}}{{/if}}{{#if (eq faction.system.status.value 5)}}{{localize "BITD.Associates"}}{{/if}}{{#if (eq faction.system.status.value 4)}}{{localize "BITD.Neutral"}}{{/if}}{{#if (eq faction.system.status.value 3)}}{{localize "BITD.Adversaries"}}{{/if}}{{#if (eq faction.system.status.value 2)}}{{localize "BITD.Enemies"}}{{/if}}{{#if (eq faction.system.status.value 1)}}{{localize "BITD.AtWar"}}{{/if}}{{#if (eq faction.system.status.value 0)}}{{localize "BITD.Defeated"}}{{/if}}</span></div>
 				<div id="faction-status-meter" class="teeth-experience-faction" style="float:left; width: 14em;">
 				{{#multiboxes faction.system.status.value}}
 					<div style="display: flex;justify-content: space-between"><input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="0" type="radio" id="faction-{{id}}-status-0" value="0" dtype="Radio">
@@ -41,9 +41,9 @@
 					<label for="faction-{{id}}-status-2" style="color:red; padding-left: 2px">-2</label>
 					<label for="faction-{{id}}-status-3" style="color:red; padding-left: 2px">-1</label>
 					<label for="faction-{{id}}-status-4" style="color:white; padding-left: 5px">0</label>
-					<label for="faction-{{id}}-status-5" style="color:deepskyblue; padding-left: 2px">+1</label>
-					<label for="faction-{{id}}-status-6" style="color:deepskyblue">+2</label>
-					<label for="faction-{{id}}-status-7" style="color:deepskyblue">+3</label>
+					<label for="faction-{{id}}-status-5" style="color:blue; padding-left: 2px">+1</label>
+					<label for="faction-{{id}}-status-6" style="color:blue">+2</label>
+					<label for="faction-{{id}}-status-7" style="color:blue">+3</label>
 				  <span style="width: 100%;display: inline-block;"> </span></div>
 				{{/multiboxes}}
 				</div>
