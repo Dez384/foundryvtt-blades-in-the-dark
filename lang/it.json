@@ -212,6 +212,7 @@
   "BITD.PositionControlled": "Controllata",
   "BITD.PositionRisky": "Rischiosa",
   "BITD.PositionDesperate": "Disperata",
+  "BITD.DesperateXPReminder": "Segna 1 PE in",
   "BITD.EffectLimited": "Limitata",
   "BITD.EffectStandard": "Normale",
   "BITD.EffectGreat": "Superiore",

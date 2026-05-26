@@ -1908,6 +1908,16 @@
   color: red;
 }
 
+/* Desperate action roll XP reminder — shown in chat when position is Desperate */
+.desperate-xp-reminder {
+  border-left: 3px solid #c8920a;
+  background-color: rgba(200, 146, 10, 0.1);
+  padding: 3px 6px;
+  margin: 4px 0;
+  font-size: 0.9em;
+  color: #c8920a;
+}
+
 /* Add Items Dialog */
 /* V11 legacy Dialog: scroll on the form wrapper */
 .items-to-add {

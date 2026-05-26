@@ -213,6 +213,7 @@
   "BITD.PositionControlled": "Controlled",
   "BITD.PositionRisky": "Risky",
   "BITD.PositionDesperate": "Desperate",
+  "BITD.DesperateXPReminder": "Mark 1 XP in",
   "BITD.EffectLimited": "Limited",
   "BITD.EffectStandard": "Standard",
   "BITD.EffectGreat": "Great",
