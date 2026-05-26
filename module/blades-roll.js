@@ -145,7 +145,17 @@ async function showChatRollMessage(r, zeromode, attribute_name = "", position = 
         effect_localize = 'BITD.EffectStandard'
     }
 
-    result = await renderTemplate("systems/blades-in-the-dark/templates/chat/action-roll.html", {rolls: rolls, zeromode: zeromode, method: method, roll_status: roll_status, attribute_label: attribute_label, position: position, position_localize: position_localize, effect: effect, effect_localize: effect_localize, note: note, edge: edge});
+    // Desperate action rolls trigger the rule: mark 1 XP in the rolled attribute.
+    // Resolve the parent attribute label now so the template can display the reminder.
+    let desperate_xp_attribute_label = null;
+    if (position === "desperate") {
+      const parentAttribute = BladesHelpers.getParentAttributeForAction(attribute_name);
+      if (parentAttribute) {
+        desperate_xp_attribute_label = game.model.Actor.character.attributes[parentAttribute]?.label ?? null;
+      }
+    }
+
+    result = await renderTemplate("systems/blades-in-the-dark/templates/chat/action-roll.html", {rolls: rolls, zeromode: zeromode, method: method, roll_status: roll_status, attribute_label: attribute_label, position: position, position_localize: position_localize, effect: effect, effect_localize: effect_localize, note: note, edge: edge, desperate_xp_attribute_label: desperate_xp_attribute_label});
   }
   // Check for Resistance roll
   else if (BladesHelpers.isAttributeAttribute(attribute_name)) {

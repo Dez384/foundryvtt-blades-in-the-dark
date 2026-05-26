@@ -201,6 +201,33 @@ export class BladesHelpers {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Returns the parent attribute key for a given action (skill) name.
+   * For example, "hunt" returns "insight", "skirmish" returns "prowess".
+   * Returns null if attribute_name is not a skill action.
+   *
+   * Used to determine which attribute XP track to mark when a desperate
+   * action roll is made (core rule: mark 1 XP in that action's attribute).
+   *
+   * @param {string} attribute_name
+   * @returns {string|null}
+   */
+  static getParentAttributeForAction(attribute_name) {
+    const attributes = game.model.Actor.character.attributes;
+
+    for (const att_name in attributes) {
+      for (const skill_name in attributes[att_name].skills) {
+        if (skill_name === attribute_name) {
+          return att_name;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  /* -------------------------------------------- */
   static getProperCase(name) {
     return name.charAt(0).toUpperCase() + name.substr(1).toLowerCase();
   }

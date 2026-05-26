@@ -56,6 +56,12 @@
 	  {{/if}}
   </div>
   
+  {{#if desperate_xp_attribute_label}}
+    <div class="description desperate-xp-reminder">
+      <p><strong>{{localize "BITD.DesperateXPReminder"}}</strong> {{localize desperate_xp_attribute_label}}</p>
+    </div>
+  {{/if}}
+
   {{#if note}}
     <em>{{note}}</em>
   {{/if}}

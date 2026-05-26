@@ -211,6 +211,7 @@
   "BITD.PositionControlled": "Контролируемая",
   "BITD.PositionRisky": "Рискованная",
   "BITD.PositionDesperate": "Отчаянная",
+  "BITD.DesperateXPReminder": "Отметь 1 опыт в",
   "BITD.EffectLimited": "Низкая",
   "BITD.EffectStandard": "Средняя",
   "BITD.EffectGreat": "Высокая",
