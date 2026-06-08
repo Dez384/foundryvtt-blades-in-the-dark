@@ -48,7 +48,7 @@
   "BITD.Update": "Atualizar",
   "BITD.Warning": "Cuidado, isto apagará todos os níveis de Atenção/Procurado",
   "BITD.Status": "Status",
-  "BITD.Jobs": "Jobs",
+  "BITD.Jobs": "Trabalhos",
   "BITD.Allies": "Aliados",
   "BITD.Friends": "Amigável",
   "BITD.Associates": "Colegas",
@@ -132,7 +132,7 @@
   "BITD.Heat": "Atenção",
   "BITD.Wanted": "Procurado",
   "BITD.Abilities": "Habilidades",
-  "BITD.Upgrades": "Upgrades",
+  "BITD.Upgrades": "Melhorias",
   "BITD.Cohorts": "Parceiros",
   "BITD.Notes": "Notas",
   "BITD.AllItems": "Todos os Itens",
@@ -375,8 +375,8 @@
       "Hint": "Adiciona às cartilhas de personagem o módulo de Vantagem do suplemento Deep Cuts."
     },
     "PublicClocks": {
-      "Name": "Default Observable Clocks",
-      "Hint": "All newly made Clock actors will have permissions set to Observer for all players."
+      "Name": "Relógios Observáveis Padrão",
+      "Hint": "Todos os Relógios recém-criados terão as permissões definidas como \"Observador\" para todos os jogadores."
     }
   },
   "BITD.log": {
