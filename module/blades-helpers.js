@@ -285,29 +285,29 @@ export class BladesHelpers {
     const dialogContent = `
     <form>
       <div class="form-group">
-        <label>Name:</label>
+        <label>${game.i18n.localize("BITD.Name")}:</label>
         <input type="text" name="name" required />
       </div>
       <div class="form-group">
-        <label>Description:</label>
+        <label>${game.i18n.localize("BITD.Description")}:</label>
         <input type="text" name="description_short" />
       </div>
       <div class="form-group">
-        <label>Standing:</label>
+        <label>${game.i18n.localize("BITD.Standing")}:</label>
         <select name="standing">
-          <option value="neutral">Neutral</option>
-          <option value="friend">Friend</option>
-          <option value="rival">Rival</option>
+          <option value="neutral">${game.i18n.localize("BITD.Neutral")}</option>
+          <option value="friend">${game.i18n.localize("BITD.Friend")}</option>
+          <option value="rival">${game.i18n.localize("BITD.Rival")}</option>
         </select>
       </div>
     </form>
   `;
 
     const result = await openFormDialog({
-      title: "Add Custom Contact",
+      title: game.i18n.localize("BITD.AddCustomContact"),
       content: dialogContent,
-      okLabel: "Add Contact",
-      cancelLabel: "Cancel",
+      okLabel: game.i18n.localize("BITD.AddContact"),
+      cancelLabel: game.i18n.localize("BITD.Cancel"),
       defaultButton: "ok",
     });
 
@@ -317,7 +317,7 @@ export class BladesHelpers {
 
     const name = String(result.name ?? "").trim();
     if (!name) {
-      ui.notifications?.warn?.("Name is required for a custom contact.");
+      ui.notifications?.warn?.(game.i18n.localize("BITD.log.warn.ContactNameRequired"));
       return false;
     }
 

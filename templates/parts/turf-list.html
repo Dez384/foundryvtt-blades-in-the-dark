@@ -50,11 +50,11 @@
           {{/if}}
 		  {{#if ../not_prison}}
           {{#noteq id "8"}}
-          <a class="turf-control turf-select" data-tooltip="Select" data-turf-id="{{id}}" data-turf-status="{{turf.value}}"><i class="fa-solid fa-arrows-rotate"></i></a>
+          <a class="turf-control turf-select" data-tooltip="{{localize 'BITD.Select'}}" data-turf-id="{{id}}" data-turf-status="{{turf.value}}"><i class="fa-solid fa-arrows-rotate"></i></a>
           {{/noteq}}
 		  {{else}}
           {{#noteq id "6"}}
-          <a class="turf-control turf-select" data-tooltip="Select" data-turf-id="{{id}}" data-turf-status="{{turf.value}}"><i class="fa-solid fa-arrows-rotate"></i></a>
+          <a class="turf-control turf-select" data-tooltip="{{localize 'BITD.Select'}}" data-turf-id="{{id}}" data-turf-status="{{turf.value}}"><i class="fa-solid fa-arrows-rotate"></i></a>
           {{/noteq}}
 		  {{/if}}
         {{/if}}

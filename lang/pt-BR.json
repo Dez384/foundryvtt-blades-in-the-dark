@@ -52,7 +52,7 @@
   "BITD.Allies": "Aliados",
   "BITD.Friends": "Amigável",
   "BITD.Associates": "Colegas",
-  "BITD.Neutral": "Neutros",
+  "BITD.Neutral": "Neutro",
   "BITD.Adversaries": "Adversários",
   "BITD.Enemies": "Inimigos",
   "BITD.AtWar": "Em Guerra!",
@@ -265,6 +265,23 @@
   "BITD.EffectEdit": "Editar Efeito",
   "BITD.EffectDelete": "Remover Efeito",
   "BITD.EffectWarning": "O gerenciamento de Efeitos Ativos em um Item atualmente não é suportado pelo Foundry VTT e será adicionado em uma atualização futura.",
+  "BITD.EffectNew": "Novo Efeito",
+  "BITD.EffectTemporary": "Efeitos Temporários",
+  "BITD.EffectPassive": "Efeitos Passivos",
+  "BITD.EffectInactive": "Efeitos Inativos",
+  "BITD.EffectSuppressed": "Efeitos Suprimidos",
+  "BITD.EffectSource": "Origem",
+  "BITD.EffectDuration": "Duração",
+  "BITD.AddCustomContact": "Adicionar Contato Personalizado",
+  "BITD.AddContact": "Adicionar Contato",
+  "BITD.Standing": "Relacionamento",
+  "BITD.Friend": "Amigo",
+  "BITD.Rival": "Rival",
+  "BITD.RollTypes": "Tipos de Rolagem",
+  "BITD.SimpleRoll": "Rolagem Simples",
+  "BITD.Select": "Selecionar",
+  "BITD.Cancel": "Cancelar",
+  "BITD.Close": "Fechar",
 
   "BITD.Name": "Nome",
   "BITD.CampaignName": "Nome da Campanha",
@@ -382,10 +399,16 @@
   "BITD.log": {
     "info": {
       "SameNPC": "O PdM selecionado já é um conhecido deste personagem.",
-      "SameCrew": "O Bando selecionado já é o Bando atual deste personagem."
+      "SameCrew": "O Bando selecionado já é o Bando atual deste personagem.",
+      "MigrationStart": "Aplicando a migração de Atores do BITD para a versão {version}. Tenha paciência e não feche o jogo nem desligue o servidor.",
+      "MigrationComplete": "Migração do Sistema BITD para a versão {version} concluída!"
     },
     "warn": {
-      "NoNPC": "Este PdM não existe no Mundo ou no Compêndio."
+      "NoNPC": "Este PdM não existe no Mundo ou no Compêndio.",
+      "ContactNameRequired": "O nome é obrigatório para um contato personalizado."
+    },
+    "error": {
+      "NoEditPermission": "Você não tem permissões suficientes para editar este personagem. Fale com o seu Mestre caso acredite que recebeu esta mensagem por engano."
     }
   }
 

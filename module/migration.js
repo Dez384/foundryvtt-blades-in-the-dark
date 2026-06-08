@@ -3,7 +3,7 @@
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function() {
-  ui.notifications.info(`Applying BITD Actors migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, {permanent: true});
+  ui.notifications.info(game.i18n.format("BITD.log.info.MigrationStart", {version: game.system.data.version}), {permanent: true});
 
   // Migrate World Actors
   for ( let a of game.actors.contents ) {
@@ -49,7 +49,7 @@ export const migrateWorld = async function() {
 
   // Set the migration as complete
   game.settings.set("bitd", "systemMigrationVersion", game.system.version);
-  ui.notifications.info(`BITD System Migration to version ${game.system.version} completed!`, {permanent: true});
+  ui.notifications.info(game.i18n.format("BITD.log.info.MigrationComplete", {version: game.system.version}), {permanent: true});
 };
 
 

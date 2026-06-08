@@ -243,10 +243,10 @@ export class BladesSheet extends BaseActorSheet {
     `;
 
     const formResult = await openFormDialog({
-      title: `${game.i18n.localize('Add')} ${item_type}`,
+      title: `${game.i18n.localize('BITD.Add')} ${item_type}`,
       content,
-      okLabel: game.i18n.localize('Add'),
-      cancelLabel: game.i18n.localize('Cancel'),
+      okLabel: game.i18n.localize('BITD.Add'),
+      cancelLabel: game.i18n.localize('BITD.Cancel'),
     });
 
     if (!formResult || !formResult.select_items) {

@@ -386,7 +386,7 @@ export async function simpleRollPopup() {
           </select>
         </div>
         <fieldset class="form-group">
-          <legend>Roll Types</legend>
+          <legend>${game.i18n.localize("BITD.RollTypes")}</legend>
           <div style="display:grid; grid-template-columns:auto auto auto; column-gap:0.5em; row-gap:0.4em; align-items:center;">
             <label><input type="radio" id="fortune" name="rollSelection" value="fortune" checked=true> ${game.i18n.localize("BITD.Fortune")}</label>
             <span style="grid-column:2 / 4;"></span>
@@ -410,10 +410,10 @@ export async function simpleRollPopup() {
     `;
 
   const formResult = await openFormDialog({
-    title: `Simple Roll`,
+    title: game.i18n.localize("BITD.SimpleRoll"),
     content,
-    okLabel: `Roll`,
-    cancelLabel: game.i18n.localize('Cancel'),
+    okLabel: game.i18n.localize("BITD.Roll"),
+    cancelLabel: game.i18n.localize('BITD.Cancel'),
   });
 
   if (!formResult) {

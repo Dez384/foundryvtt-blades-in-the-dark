@@ -11,7 +11,7 @@ export function onManageActiveEffect(event, owner) {
   switch ( a.dataset.action ) {
     case "create":
       return owner.createEmbeddedDocuments("ActiveEffect", [{
-        name: "New Effect",
+        name: game.i18n.localize("BITD.EffectNew"),
         icon: "systems/blades-in-the-dark/styles/assets/icons/Icon.3_13.png",
         origin: owner.uuid,
         "duration.rounds": selector.dataset.effectType === "temporary" ? 1 : undefined,
@@ -38,17 +38,17 @@ export function prepareActiveEffectCategories(effects) {
     const categories = {
       temporary: {
         type: "temporary",
-        name: "Temporary Effects",
+        name: "BITD.EffectTemporary",
         effects: []
       },
       passive: {
         type: "passive",
-        name: "Passive Effects",
+        name: "BITD.EffectPassive",
         effects: []
       },
       inactive: {
         type: "inactive",
-        name: "Inactive Effects",
+        name: "BITD.EffectInactive",
         effects: []
       }
     };

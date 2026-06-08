@@ -110,7 +110,7 @@ export class BladesActor extends Actor {
     if (BladesHelpers.isAttributeAction(attribute_name)) {
       content += `
         <fieldset class="form-group" style="display:grid; gap:0.5em;">
-          <legend>Roll Types</legend>`;
+          <legend>${game.i18n.localize('BITD.RollTypes')}</legend>`;
 		// Row 1: Action Roll (if enabled)
 		if (game.settings.get('blades-in-the-dark', 'ActionRoll')) {
 		  content += `
@@ -164,7 +164,7 @@ export class BladesActor extends Actor {
       title: `${game.i18n.localize('BITD.Roll')} ${game.i18n.localize(attribute_label)}`,
       content,
       okLabel: game.i18n.localize('BITD.Roll'),
-      cancelLabel: game.i18n.localize('Close'),
+      cancelLabel: game.i18n.localize('BITD.Close'),
       defaultButton: "ok",
     });
 

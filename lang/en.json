@@ -265,6 +265,23 @@
   "BITD.EffectEdit": "Edit Effect",
   "BITD.EffectDelete": "Delete Effect",
   "BITD.EffectWarning": "Managing Active Effects within an Owned Item is not currently supported by FoundryVTT and will be added in a subsequent update.",
+  "BITD.EffectNew": "New Effect",
+  "BITD.EffectTemporary": "Temporary Effects",
+  "BITD.EffectPassive": "Passive Effects",
+  "BITD.EffectInactive": "Inactive Effects",
+  "BITD.EffectSuppressed": "Suppressed Effects",
+  "BITD.EffectSource": "Source",
+  "BITD.EffectDuration": "Duration",
+  "BITD.AddCustomContact": "Add Custom Contact",
+  "BITD.AddContact": "Add Contact",
+  "BITD.Standing": "Standing",
+  "BITD.Friend": "Friend",
+  "BITD.Rival": "Rival",
+  "BITD.RollTypes": "Roll Types",
+  "BITD.SimpleRoll": "Simple Roll",
+  "BITD.Select": "Select",
+  "BITD.Cancel": "Cancel",
+  "BITD.Close": "Close",
 
   "BITD.Name": "Name",
   "BITD.CampaignName": "Campaign Name",
@@ -382,10 +399,16 @@
   "BITD.log": {
     "info": {
       "SameNPC": "The dropped NPC is already an acquaintance of this character.",
-      "SameCrew": "The dropped Crew is the current crew of this character."
+      "SameCrew": "The dropped Crew is the current crew of this character.",
+      "MigrationStart": "Applying BITD Actors migration for version {version}. Please be patient and do not close your game or shut down your server.",
+      "MigrationComplete": "BITD System Migration to version {version} completed!"
     },
     "warn": {
-      "NoNPC": "This NPC does not exist in the World or in a Compendium."
+      "NoNPC": "This NPC does not exist in the World or in a Compendium.",
+      "ContactNameRequired": "Name is required for a custom contact."
+    },
+    "error": {
+      "NoEditPermission": "You do not have sufficient permissions to edit this character. Please speak to your GM if you feel you have reached this message in error."
     }
   }
 
