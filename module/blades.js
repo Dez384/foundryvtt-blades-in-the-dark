@@ -1,3 +1,4 @@
+import { registerSystemDataModels } from "./data-models.js";
 /**
  * A simple and flexible system for world-building using an arbitrary collection of character and item attributes
  * Author: Atropos
@@ -38,6 +39,9 @@ Hooks.once("init", async function() {
   };
 
   game.system.traumas = [ "cold", "haunted", "obsessed", "paranoid", "reckless", "soft", "unstable", "vicious" ];
+
+  // Foundry VTT v14: register each Actor and Item TypeDataModel.
+  registerSystemDataModels();
 
   CONFIG.Item.documentClass = BladesItem;
   CONFIG.Actor.documentClass = BladesActor;

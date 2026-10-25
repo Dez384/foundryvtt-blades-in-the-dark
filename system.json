@@ -12,10 +12,18 @@
   "manifest": "https://raw.githubusercontent.com/Dez384/foundryvtt-blades-in-the-dark/master/system.json",
   "download": "https://github.com/Dez384/foundryvtt-blades-in-the-dark/archive/refs/tags/v6.1.2.zip",
   "authors": [
-    { "name": "megastruktur" },
-    { "name": "drewg13" },
-    { "name": "justinross" },
-    { "name": "Dez384" }
+    {
+      "name": "megastruktur"
+    },
+    {
+      "name": "drewg13"
+    },
+    {
+      "name": "justinross"
+    },
+    {
+      "name": "Dez384"
+    }
   ],
   "esmodules": [
     "module/blades.js"
@@ -167,7 +175,7 @@
       "banner": "systems/blades-in-the-dark/images/compendium-banners/Doskvol_11.webp",
       "type": "Item"
     },
-	{
+    {
       "name": "faction",
       "label": "Factions",
       "system": "blades-in-the-dark",
@@ -183,7 +191,7 @@
       "banner": "systems/blades-in-the-dark/images/compendium-banners/Doskvol_13.webp",
       "type": "Actor"
     },
-	{
+    {
       "name": "entanglements",
       "label": "Entanglements",
       "system": "blades-in-the-dark",
@@ -191,7 +199,7 @@
       "banner": "systems/blades-in-the-dark/images/compendium-banners/Doskvol_14.webp",
       "type": "RollTable"
     },
-	{
+    {
       "name": "entanglements-journals",
       "label": "Entanglements Journals",
       "system": "blades-in-the-dark",
@@ -199,7 +207,7 @@
       "banner": "systems/blades-in-the-dark/images/compendium-banners/Doskvol_15.webp",
       "type": "JournalEntry"
     },
-	{
+    {
       "name": "entanglements-macro",
       "label": "Entanglements Macro",
       "system": "blades-in-the-dark",
@@ -212,22 +220,68 @@
     {
       "name": "Character Options",
       "sorting": "m",
-      "packs": ["class", "ability", "item", "background", "heritage", "vice"]
-	},
+      "packs": [
+        "class",
+        "ability",
+        "item",
+        "background",
+        "heritage",
+        "vice"
+      ]
+    },
     {
       "name": "Crew Options",
       "sorting": "m",
-      "packs": ["crew_type", "crew_ability", "crew_upgrade", "prison", "crew_reputation", "hunting_grounds"]
-	},
+      "packs": [
+        "crew_type",
+        "crew_ability",
+        "crew_upgrade",
+        "prison",
+        "crew_reputation",
+        "hunting_grounds"
+      ]
+    },
     {
       "name": "Factions & NPCs",
       "sorting": "m",
-      "packs": ["faction", "npc"]
-	},
+      "packs": [
+        "faction",
+        "npc"
+      ]
+    },
     {
       "name": "Entanglements",
       "sorting": "m",
-      "packs": ["entanglements-macro", "entanglements", "entanglements-journals"]
-	}
-  ]
+      "packs": [
+        "entanglements-macro",
+        "entanglements",
+        "entanglements-journals"
+      ]
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "🕛 clock": {},
+      "character": {},
+      "npc": {},
+      "crew": {},
+      "factions": {}
+    },
+    "Item": {
+      "faction": {},
+      "item": {},
+      "class": {},
+      "ability": {},
+      "heritage": {},
+      "background": {},
+      "vice": {},
+      "hunting_grounds": {},
+      "crew_upgrade": {},
+      "cohort": {},
+      "crew_type": {},
+      "crew_reputation": {},
+      "crew_ability": {},
+      "prison": {}
+    }
+  }
 }
