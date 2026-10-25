@@ -1972,3 +1972,40 @@ dialog.dialog .dialog-content input[type=checkbox]:checked + label {
 
 
 /*# sourceMappingURL=blades.css.map */
+
+/* CLOCK-V2-LIGHT-APPEARANCE */
+/* Confined to the ApplicationV2 Clock sheet; other sheets are unchanged. */
+.application.blades-in-the-dark.clock .window-content,
+.blades-in-the-dark.clock.application .window-content {
+  background: #eee9df !important;
+  color: #191813 !important;
+}
+.application.blades-in-the-dark.clock .clock-block,
+.blades-in-the-dark.clock.application .clock-block {
+  background: transparent;
+  color: #191813;
+}
+/* The original CC-zero icon can disappear with icon-font/theme changes. */
+.application.blades-in-the-dark.clock .clock-zero-label,
+.blades-in-the-dark.clock.application .clock-zero-label {
+  color: #191813 !important;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 28px;
+  min-height: 28px;
+  font-size: 0;
+  text-decoration: none;
+}
+.application.blades-in-the-dark.clock .clock-zero-label::before,
+.blades-in-the-dark.clock.application .clock-zero-label::before {
+  content: "↺";
+  font: 700 24px/1 system-ui, sans-serif;
+  color: #191813;
+}
+.application.blades-in-the-dark.clock .clock-zero-label i,
+.blades-in-the-dark.clock.application .clock-zero-label i {
+  display: none;
+}
+/* END CLOCK-V2-LIGHT-APPEARANCE */

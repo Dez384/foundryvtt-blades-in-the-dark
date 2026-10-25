@@ -1,3 +1,9 @@
+import { BladesItemSheetV2Types } from "./blades-item-sheet-v2.js";
+import { BladesFactionSheetV2 } from "./blades-faction-sheet-v2.js";
+import { BladesNPCSheetV2 } from "./blades-npc-sheet-v2.js";
+import { BladesCrewSheetV2 } from "./blades-crew-sheet-v2.js";
+import { BladesCharacterSheetV2 } from "./blades-character-sheet-v2.js";
+import { BladesClockSheetV2 } from "./blades-clock-sheet-v2.js";
 import { registerSystemDataModels } from "./data-models.js";
 /**
  * A simple and flexible system for world-building using an arbitrary collection of character and item attributes
@@ -331,13 +337,26 @@ Hooks.once("ready", async function() {
   const itemSheetClass = getItemSheetClass();
 
   unregisterActorSheet("core", actorSheetClass);
-  registerActorSheet("blades", BladesActorSheet, { types: ["character"], makeDefault: true });
-  registerActorSheet("blades", BladesCrewSheet, { types: ["crew"], makeDefault: true });
-  registerActorSheet("blades", BladesFactionSheet, { types: ["factions"], makeDefault: true });
-  registerActorSheet("blades", BladesClockSheet, { types: ["\uD83D\uDD5B clock"], makeDefault: true });
-  registerActorSheet("blades", BladesNPCSheet, { types: ["npc"], makeDefault: true });
+  registerActorSheet("blades", BladesCharacterSheetV2, { types: ["character"], makeDefault: true });
+  registerActorSheet("blades", BladesCrewSheetV2, { types: ["crew"], makeDefault: true });
+  registerActorSheet("blades", BladesFactionSheetV2, { types: ["factions"], makeDefault: true });
+  registerActorSheet("blades", BladesClockSheetV2, { types: ["\uD83D\uDD5B clock"], makeDefault: true });
+  registerActorSheet("blades", BladesNPCSheetV2, { types: ["npc"], makeDefault: true });
   unregisterItemSheet("core", itemSheetClass);
-  registerItemSheet("blades", BladesItemSheet, {makeDefault: true});
+    // BEGIN Blades Item V2 registration
+  const itemV2Types = {
+    ability: 'ability', class: 'class', cohort: 'cohort', crew_ability: 'crew_ability',
+    crew_type: 'crew_type', crew_upgrade: 'crew_upgrade', faction: 'faction',
+    hunting_grounds: 'hunting_grounds', item: 'item', prison: 'prison',
+    background: 'simple', heritage: 'simple', vice: 'simple', crew_reputation: 'simple'
+  };
+  for (const [type, templateName] of Object.entries(itemV2Types)) {
+    registerItemSheet('blades', BladesItemSheetV2Types[templateName], {
+      types: [type], makeDefault: true, label: `Blades Item V2 (${type})`
+    });
+  }
+  // END Blades Item V2 registration
+
 
   await preloadHandlebarsTemplates();
 

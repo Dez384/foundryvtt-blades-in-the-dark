@@ -1,0 +1,80 @@
+<div class="actor-sheet">
+  <section id="factions" class="flex-horizontal">
+	<div id="factions-section" class="flex-vertical grow-two">
+		<div class="flex-horizontal" style="margin-bottom: 3px; margin-right: 5px">
+			<img src="{{img}}" data-edit="img" data-tooltip="{{name}}" height="26" width="26"/>
+			<input type="text" id="character-{{_id}}-name" name="name" value="{{name}}" style="border: 1px solid transparent; font-size: 26px; font-weight: normal">
+		</div>
+	  <div class="tab flex-vertical">
+		<div class="label-stripe">
+           <p>{{localize "BITD.Factions"}}</p>
+          <p><a class="item-add-popup" data-item-type="faction" style="padding-left: 5px"><i class="fas fa-plus-square"></i></a></p>
+        </div>
+
+        <div id="faction-list">
+          {{#each items as |faction id|}}
+          {{#if (eq faction.type "faction")}}
+
+			<div id="faction-{{faction._id}}-items" class="faction-items label-stripe-gray item flex-horizontal" data-item-id="{{faction._id}}" style="padding-top: 5px">
+              <a class="item-body flex-horizontal">
+                <img src="{{faction.img}}" title="{{faction.name}}" width="24" height="24"/>
+				<div class="item-name">{{faction.name}}<br>{{localize "BITD.Tier"}}: {{faction.system.tier}}</div>
+			  </a>
+			  <a class="item-control item-delete" title="{{localize 'BITD.TitleDeleteItem'}}"><i class="fas fa-trash"></i></a>
+				<a class="item-control item-post" title="{{localize 'BITD.TitlePostItem'}}"><i class="fas fa-comment"></i></a>
+
+			  <div id="faction-status">
+				<div id="faction-status-label" style="float:left; width: 10em; text-align: right; padding-right: 10px; color: white">{{localize "BITD.Status"}}<br><span style="color: {{#if (eq faction.system.status.value 7)}}blue{{/if}}{{#if (eq faction.system.status.value 6)}}blue{{/if}}{{#if (eq faction.system.status.value 5)}}blue{{/if}}{{#if (eq faction.system.status.value 4)}}white{{/if}}{{#if (eq faction.system.status.value 3)}}red{{/if}}{{#if (eq faction.system.status.value 2)}}red{{/if}}{{#if (eq faction.system.status.value 1)}}red{{/if}}{{#if (eq faction.system.status.value 0)}}black{{/if}}">{{#if (eq faction.system.status.value 7)}}{{localize "BITD.Allies"}}{{/if}}{{#if (eq faction.system.status.value 6)}}{{localize "BITD.Friends"}}{{/if}}{{#if (eq faction.system.status.value 5)}}{{localize "BITD.Associates"}}{{/if}}{{#if (eq faction.system.status.value 4)}}{{localize "BITD.Neutral"}}{{/if}}{{#if (eq faction.system.status.value 3)}}{{localize "BITD.Adversaries"}}{{/if}}{{#if (eq faction.system.status.value 2)}}{{localize "BITD.Enemies"}}{{/if}}{{#if (eq faction.system.status.value 1)}}{{localize "BITD.AtWar"}}{{/if}}{{#if (eq faction.system.status.value 0)}}{{localize "BITD.Defeated"}}{{/if}}</span></div>
+				<div id="faction-status-meter" class="teeth-experience-faction" style="float:left; width: 14em;">
+				{{#multiboxes faction.system.status.value}}
+					<div style="display: flex;justify-content: space-between"><input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="0" type="radio" id="faction-{{id}}-status-0" value="0" dtype="Radio">
+					<input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="1" type="radio" id="faction-{{id}}-status-1" value="1" dtype="Radio">
+					<input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="2" type="radio" id="faction-{{id}}-status-2" value="2" dtype="Radio">
+					<input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="3" type="radio" id="faction-{{id}}-status-3" value="3" dtype="Radio">
+					<input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="4" type="radio" id="faction-{{id}}-status-4" value="4" dtype="Radio">
+					<input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="5" type="radio" id="faction-{{id}}-status-5" value="5" dtype="Radio">
+					<input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="6" type="radio" id="faction-{{id}}-status-6" value="6" dtype="Radio">
+					<input class="update-box" data-utype="status" data-item="{{faction._id}}" data-value="7" type="radio" id="faction-{{id}}-status-7" value="7" dtype="Radio">
+					</div><div style="text-align: justify;padding:2px 2px 0px 5px">
+					<label for="faction-{{id}}-status-0" style="color:black"><i class="fa-solid fa-skull-crossbones" style="padding-top: 5px"></i></label>
+					<label for="faction-{{id}}-status-1" style="color:red; padding-left: 2px">-3</label>
+					<label for="faction-{{id}}-status-2" style="color:red; padding-left: 2px">-2</label>
+					<label for="faction-{{id}}-status-3" style="color:red; padding-left: 2px">-1</label>
+					<label for="faction-{{id}}-status-4" style="color:white; padding-left: 5px">0</label>
+					<label for="faction-{{id}}-status-5" style="color:blue; padding-left: 2px">+1</label>
+					<label for="faction-{{id}}-status-6" style="color:blue">+2</label>
+					<label for="faction-{{id}}-status-7" style="color:blue">+3</label>
+				  <span style="width: 100%;display: inline-block;"> </span></div>
+				{{/multiboxes}}
+				</div>
+			  </div>
+
+			  <div id="crew-hold" class="flex-horizontal" style="align-items: start">
+				<div class="black-label">{{localize "BITD.Hold"}}</div>
+				{{#multiboxes faction.system.hold.value}}
+				<div class="flex-horizontal">
+				  <div class="gray-label">{{localize "BITD.Weak"}}</div>
+				  <input class="update-box" data-utype="hold" data-item="{{faction._id}}" data-value="1" type="radio" id="faction-{{id}}-hold-1" value="1" dtype="Radio">
+				  <label for="faction-{{id}}-hold-1"></label>
+				</div>
+				<div class="flex-horizontal">
+				  <div class="gray-label">{{localize "BITD.Strong"}}</div>
+				  <input class="update-box" data-utype="hold" data-item="{{faction._id}}" data-value="2" type="radio" id="faction-{{id}}-hold-2" value="2" dtype="Radio">
+				  <label for="faction-{{id}}-hold-2"></label>
+				</div>
+				{{/multiboxes}}
+			  </div>
+
+
+
+
+		  </div>
+          {{/if}}
+          {{/each}}
+          <div class="item-class-label"><a class="item-add-popup" data-item-type="faction">{{localize "BITD.AddItem"}}</a></div>
+        </div>
+	  </div>
+	</div>
+  </section>
+
+</div>

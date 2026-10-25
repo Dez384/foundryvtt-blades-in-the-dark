@@ -1,0 +1,26 @@
+<div class="clock-block">
+  {{#if editable}}
+    <div class="clock-name editable">
+      <input type="text" id="{{id}}-clock-name" name="name" value="{{name}}" />
+    </div>
+    <div class="clock-config">
+      <div class="clock-config-group">
+        <label for="system.type"><i class="fa fa-chart-pie"></i></label>
+        <select data-type="Number" name="system.type">
+          {{selectOptions sizeDropdown selected=system.type}}
+        </select>
+      </div>
+      <div class="clock-config-group">
+        <label for="system.color"><i class="fa fa-palette"></i></label>
+        <select data-type="String" name="system.color">
+          {{selectOptions colorDropdown selected=system.color localize=true}}
+        </select>
+      </div>
+    </div>
+  {{else}}
+    <div class="clock-name"><input name="name" value="{{name}}" readonly /></div>
+  {{/if}}
+  <div class="clocks clocks-{{system.type}}">
+    {{{blades-clock-color "system.value" system.type system.color system.value _id}}}
+  </div>
+</div>

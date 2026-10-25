@@ -1,0 +1,124 @@
+<div class="item-sheet">
+
+  <header class="sheet-header">
+      <img src="{{img}}" data-edit="img" title="{{name}}"/>
+      <div class="header-fields">
+          <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize 'BITD.Name'}}"/></h1>
+      </div>
+  </header>
+
+  <section class="flex-vertical">
+
+    <div class="label-stripe">{{localize "BITD.Information"}}</div>
+
+    <div>{{{localize "BITD.AddAdditionalTypeOfGangText"}}}</div>
+  </section>
+
+  <section class="flex-vertical">
+
+    <div class="label-stripe">{{localize "BITD.CohortType"}}</div>
+
+    <div id="cohort-type-list">
+      {{#each system.cohort_list as |cohort key|}}
+      {{#multiboxes ../system.cohort}}
+      <label for="{{key}}-cohort">{{localize cohort.label}}</label>
+      <input id="{{key}}-cohort" type="radio" name="system.cohort" value="{{key}}">
+      {{/multiboxes}}
+      {{/each}}
+    </div>
+  </section>
+
+  <section id="gang-expert-type-selector" class="flex-vertical">
+    {{#if (eq system.cohort "Gang")}}
+
+      <div class="label-stripe">{{localize "BITD.GangType"}}</div>
+      <div id="gang-type-boxes" class="flex-horizontal">
+
+        <select name="system.gang_type" multiple>
+          {{selectOptionsWithLabel system.gang_type_list selected=system.gang_type localize=true}}
+        </select>
+
+      </div>
+      <div id="selected-gang-description" class="gang-description">
+        {{#each system.gang_type as |gang_type key|}}
+          {{#with (lookup ../system.gang_type_list gang_type)}}
+            {{localize description}}
+          {{/with}}
+        {{/each}}
+      </div>
+
+    {{/if}}
+
+    {{#if (eq system.cohort "Expert")}}
+      <div class="label-stripe">{{localize "BITD.ExpertType"}}</div>
+      <input type="text" name="system.expert_type" value="{{system.expert_type}}">
+    {{/if}}
+  </section>
+
+  {{!-- Scale and Quality if attached to Actor --}}
+  {{#if (eq document.parent.documentName "Actor")}}
+  <section id="quality-scale" class="flex-vertical">
+    <div class="label-stripe">{{localize "BITD.ScaleAndQuality"}}</div>
+    <div>
+      {{localize "BITD.Quality"}}: {{system.quality}}
+      {{localize "BITD.Scale"}}: {{system.scale}}
+    </div>
+  </section>
+  {{/if}}
+
+  {{!-- Edges and Flaws --}}
+  <section id="edges-flaws" class="flex-vertical">
+
+    <div class="label-stripe">{{localize "BITD.ChooseOneOrTwoEdges"}}</div>
+
+    <div class="flex-horizontal">
+
+      <div class="edgeflaw-container flex-vertical">
+        <div class="label-stripe">{{localize "BITD.Edges"}}</div>
+        {{#each system.edges_list as |edge key|}}
+          <div class="edgeflaw flex-horizontal">
+            <input id="cohort-{{_id}}-edge-{{key}}" type="checkbox" data-dType="Boolean" name="system.edges_list.{{key}}.selected"
+                   {{checked edge.selected}}>
+            <label for="cohort-{{_id}}-edge-{{key}}">{{localize edge.label}}</label>
+          </div>
+        {{/each}}
+      </div>
+
+      <div class="edgeflaw-container flex-vertical">
+        <div class="label-stripe">{{localize "BITD.Flaws"}}</div>
+        {{#each system.flaws_list as |flaw key|}}
+          <div class="edgeflaw flex-horizontal">
+            <input id="cohort-{{_id}}-flaw-{{key}}" type="checkbox" data-dType="Boolean" name="system.flaws_list.{{key}}.selected"
+                   {{checked flaw.selected}}>
+            <label for="cohort-{{_id}}-flaw-{{key}}">{{localize flaw.label}}</label>
+          </div>
+        {{/each}}
+      </div>
+
+    </div>
+
+
+  </section>
+
+  <section id="cohort-harm" class="flex-vertical">
+    <div class="label-stripe">{{localize "BITD.Harm"}}</div>
+    <div id="harm-list" class="flex-horizontal">
+      {{#multiboxes system.harm}}
+      {{#each system.harm_list as |harm harm_key|}}
+        <input id="{{harm_key}}-harm" type="radio" name="system.harm" value="{{harm_key}}">
+        <label for="{{harm_key}}-harm">{{localize harm.label}}</label>
+      {{/each}}
+      {{/multiboxes}}
+    </div>
+  </section>
+
+  <section class="flex-horizontal" style="justify-content: unset;">
+    <input id="cohort-armor" type="checkbox" data-dType="Boolean" name="system.armor" value="{{system.armor}}" {{checked system.armor}}>
+    <label for="cohort-armor">{{localize "BITD.Armor"}}</label>
+  </section>
+
+  <section class="sheet-body flex-vertical">
+    <div class="label-stripe">{{localize "BITD.Description"}}</div>
+    <textarea name="system.description">{{system.description}}</textarea>
+  </section>
+</div>

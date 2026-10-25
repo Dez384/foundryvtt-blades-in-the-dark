@@ -1,0 +1,23 @@
+<div class="item-sheet">
+    <header class="sheet-header">
+        <img src="{{img}}" data-edit="img" title="{{name}}"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize 'BITD.Name'}}"/></h1>
+        </div>
+    </header>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body flex">
+    <label class="label-stripe">{{localize "BITD.Description"}}</label>
+      {{editor system.description target="system.description" button=true editable=editable}}
+    </section>
+
+    <div class="flex-vertical">
+      <label class="label-stripe">{{localize "BITD.CrewType"}}</label>
+      <input id="ability-class" type="text" name="system.class" value="{{system.class}}" placeholder="{{localize 'BITD.AbilityClass'}}">
+      {{#if isGM}}
+        <div class="label-stripe">{{localize "BITD.Effects"}}</div>
+        <div id="effects">{{> "systems/blades-in-the-dark/templates/parts/active-effects.html"}}</div>
+      {{/if}}
+    </div>
+</div>
